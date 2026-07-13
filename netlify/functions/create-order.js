@@ -63,7 +63,7 @@ exports.handler = async (event) => {
 
         await sendEmail({
 
-           to: "practicularium@gmail.com",
+           to: process.env.OWNER_EMAIL,
 
            subject: "Нове замовлення",
 

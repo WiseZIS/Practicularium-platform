@@ -1,12 +1,12 @@
 const emailConfig = {
 
-    ownerEmail: "practicularium@gmail.com",
+    ownerEmail: process.env.OWNER_EMAIL,
 
     ownerName: "Практикулярій",
 
     senderName: "Practicularium",
 
-    supportEmail: "practicularium@gmail.com"
+    supportEmail: process.env.OWNER_EMAIL
 
 };
 
