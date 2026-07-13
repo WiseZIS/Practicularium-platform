@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="../img/favicon.png">
+<link rel="alternate" hreflang="en" href="/en/poetry.html">
+<link rel="alternate" hreflang="uk" href="/ua/poetry.html">
+<link rel="alternate" hreflang="ru" href="/ru/poetry.html">
+<link rel="alternate" hreflang="x-default" href="/ua/poetry.html">
+<title>The story of one person's feelings — Practicularium</title>
+
+<style>
+:root{
+  --dark-green:#0f3d2e;
+  --green:#1f6b4f;
+  --light-green:#e8f4ef;
+  --yellow:#f5c400;
+}
+
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  font-family:"Segoe UI",Arial,sans-serif;
+  background:#fff;
+  color:#1a1a1a;
+}
+
+/* ===== HEADER ===== */
+header{
+  background:var(--dark-green);
+  color:#fff;
+  padding:18px 40px;
+
+  position:sticky;
+  top:0;
+  z-index:1000;
+
+  box-shadow:0 2px 10px rgba(0,0,0,0.2);
+}
+
+.header-line{
+  display:flex;
+  align-items:center;
+  gap:32px;
+  flex-wrap:wrap;
+}
+
+header h1{
+  margin:0;
+  font-size:28px;
+  letter-spacing:2px;
+}
+
+nav{
+  display:flex;
+  gap:12px;
+  flex:1;
+  flex-wrap:wrap;
+}
+
+nav a{
+  color:#fff;
+  text-decoration:none;
+  padding:6px 10px;
+  border-radius:4px;
+  font-size:14px;
+}
+
+nav a.active{
+  background:var(--yellow);
+  color:#000;
+  font-weight:700;
+}
+
+nav a.active.poetry{
+  color:#000 !important;
+}
+
+nav a.poetry{
+   color:#9be39b;
+}
+
+.lang-switch{
+  margin-left:12px;
+  background:#ff4fa3;
+  border-radius:8px;
+  padding:3px;
+
+  display:flex;
+  flex-direction:column;
+
+  gap:2px;
+  min-width:34px;
+}
+
+.lang-switch a{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#ffffff;
+  text-decoration:none;
+  font-weight:700;
+  font-size:10px;
+  line-height:1;
+  padding:2px;
+}
+
+.lang-switch a:hover{
+  opacity:0.8;
+}
+
+.lang-switch a.active-lang{
+  background:rgba(255,255,255,0.25);
+  border-radius:4px;
+}
+/* ===== MAIN ===== */
+.main{
+  display:flex;
+  min-height:calc(100vh - 200px);
+}
+
+/* LEFT */
+.left{
+  width:32%;
+  background:var(--green);
+  color:#fff;
+  padding:40px 30px;
+}
+
+.book-cover{
+  width:100%;
+  border-radius:6px;
+  margin-bottom:24px;
+}
+
+.quote{
+  border-left:4px solid var(--yellow);
+  padding-left:16px;
+  font-style:italic;
+  line-height:1.5;
+}
+
+.quote-sign{
+  font-size:13px;
+  opacity:.85;
+  margin:10px 0 18px;
+}
+
+.buy-btn{
+  display:inline-block;
+  background:var(--yellow);
+  color:#000;
+  padding:12px 26px;
+  border-radius:6px;
+  font-weight:700;
+  text-decoration:none;
+  margin-bottom:26px;
+  transition:.2s ease;
+}
+
+.buy-btn:hover{
+  background:#ffd633;
+}
+
+/* SOCIAL PANEL */
+.socials{
+  margin-top:30px;
+}
+
+.social-item{
+  display:flex;
+  flex-direction:column;
+  gap:2px;
+  padding:8px 10px;
+  border-radius:4px;
+  font-size:14px;
+  text-decoration:none;
+  color:#fff;
+  margin-bottom:8px;
+  transition:0.2s ease;
+}
+
+.social-item span{
+  font-size:12px;
+  opacity:.8;
+}
+
+.fb:hover{background:#1877f2}
+.ig:hover{background:#e1306c}
+.th:hover{background:#000}
+.tt:hover{background:#25f4ee;color:#000}
+
+/* RIGHT */
+.right{
+  width:68%;
+  background:var(--light-green);
+  padding:46px 60px;
+  line-height:1.6;
+}
+
+.section{
+  margin-bottom:18px;
+}
+
+.section strong{
+  color:var(--green);
+}
+
+.poem-box{
+  background:#ffffff;
+  border-left:4px solid var(--green);
+  padding:14px 18px;
+  margin:22px 0;
+  font-style:italic;
+}
+
+.poem-sign{
+  font-size:13px;
+  opacity:.7;
+  margin-top:6px;
+}
+
+.bottom-buy{
+  margin-top:30px;
+}
+
+/* FOOTER */
+footer{
+  background:var(--dark-green);
+  color:#fff;
+  padding:18px 40px;
+}
+
+.footer-line{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  font-style:italic;
+  font-size:15px;
+  flex-wrap:wrap;
+}
+
+.footer-sign{
+  font-size:13px;
+  opacity:.85;
+}
+
+/* ===== ADAPTIVE ===== */
+@media (max-width: 992px){
+
+  .main{
+    flex-direction:column;
+  }
+
+  .left, .right{
+    width:100%;
+  }
+
+  .right{
+    padding:40px 30px;
+  }
+
+  header{
+    padding:18px 20px;
+  }
+
+  nav{
+    width:100%;
+    justify-content:flex-start;
+  }
+
+  footer{
+    padding:18px 20px;
+  }
+}
+
+@media (max-width: 600px){
+
+  header{
+    position:static;
+  }
+
+  .header-line{
+    position:relative;
+  }
+
+  .lang-switch{
+    position:absolute;
+    right:0;
+    top:55px;
+  }
+
+  header h1{
+    font-size:22px;
+  }
+
+  nav{
+    gap:6px;
+  }
+
+  nav a{
+    font-size:14px;
+    padding:6px 8px;
+  }
+
+  .left{
+    padding:30px 20px;
+  }
+
+  .right{
+    padding:30px 20px;
+  }
+
+  .footer-line{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:6px;
+  }
+}
+</style>
+
+</head>
+
+<body>
+
+<header>
+  <div class="header-line">
+    <h1>PRACTICULARIUM</h1>
+    <nav>
+      <a href="index.html">Author</a>
+      <a href="practicularium.html">Practicularium</a>
+      <a href="community.html">Community</a>
+      <a href="models.html">Author's models</a>
+      <a href="contacts.html">Contacts / Buy</a>
+      <a href="poetry.html" class="active poetry">Poetry Book</a>
+    </nav>
+
+    <div class="lang-switch">
+      <a href="../ua/poetry.html">UA</a>
+      <a href="../it/poetry.html">IT</a>
+      <a href="poetry.html" class="active-lang">EN</a>
+      <a href="../ru/poetry.html">RU</a>
+    </div>
+
+  </div>
+</header>
+
+<div class="main">
+
+  <!-- LEFT -->
+  <div class="left">
+    <img src="../img/poetry-book.jpg" alt="Обложка книги" class="book-cover">
+
+    <div class="quote">
+      Я не поэт – попутчик музы,<br>
+      Простой прохожий на её пути.<br>
+      Сложилось так, что нас связали узы<br>
+      Тяжёлых дней, дней трепета души!
+    </div>
+    <div class="quote-sign">(© «The story of one person's feelings». І.S. Zaitsev)</div>
+
+    <a href="contacts.html" class="buy-btn">Buy</a>
+ 
+<div class="socials">
+      <a href="https://facebook.com/profile.php?id=61579622259373"      
+         class="social-item fb" target="_blank"
+         rel="noopener noreferrer">
+        <strong>📘 Facebook</strong>
+        <span>facebook.com/profile.php?id=61579622259373</span>
+      </a>
+
+      <a href="https://instagram.com/book.feelstor" 
+         class="social-item ig" 
+         target="_blank"
+         rel="noopener noreferrer">
+        <strong>📸 Instagram</strong>
+        <span>instagram.com/book.feelstor</span>
+      </a>
+
+      <a href="https://threads.com/@book.feelstor" 
+         class="social-item th" target="_blank"
+         rel="noopener noreferrer">
+        <strong>🧵 Threads</strong>
+        <span>threads.com/@book.feelstor</span>
+      </a>
+
+      <a href="https://tiktok.com/@feelings.story1" 
+         class="social-item tt" target="_blank"
+         rel="noopener noreferrer">
+        <strong>🎵 TikTok</strong>
+        <span>tiktok.com/@feelings.story1</span>
+      </a>
+    </div>
+  </div>
+
+ 
+  <!-- RIGHT -->
+  <div class="right">
+
+    <!-- NEW TEXT BLOCK -->
+    <div class="section">
+      <strong>«The Story of One Man’s Feelings»</strong> — is a poetic documentation of emotional states, experiences, and inner transitions familiar to every person.
+    </div>
+
+    <div class="section">
+      This book  <strong>is not related to the “Practicularium” project</strong>.<br>
+      <strong>This is a completed stage of the past, preserved as memory and experience, which was mainly written much earlier, before 2014, and mainly in the "Rus’kiy" language..</strong>
+
+    </div>
+
+    <div class="section">
+      This is not a book of beautiful words.<br>
+      It is a book about <strong>real feelings </strong>, lived through and consciously understood.
+    </div>
+
+    <div class="section">
+      For me, this book  — <strong>an act of self-discovery</strong>.<br>
+      A discovery of the hidden capacities within a person — those we may not even realize we possess.
+    </div>
+
+    <div class="section">
+      Understanding one’s inner potential is impossible without an external impulse.<br>
+      <strong>For me, that impulse was feelings.</strong>
+    </div>
+
+    <div class="section">
+      I had never thought I would be able to write even a single poem.<br>
+      I never studied poetry.<br>
+      I was <strong>merely an intermediary between inspiration and paper</strong>.
+    </div>
+
+    <div class="section">
+      Not a single line in this book was forced.<br>
+      Even the sad lines are part of a greater, meaningful whole.
+    </div>
+
+    <!-- POEMS -->
+    <div class="section">
+      <strong>Note to the Reader.</strong><br>
+      The poetic excerpts presented below are not literal translations of the original work.
+      They are free adaptations created to convey the meaning, emotion, and atmosphere of the author's verses to English-speaking readers.
+    </div>
+
+    <div class="poem-box">
+      “We cannot understand the strength of separation<br>
+      until we have cherished the beauty of meeting.”
+      <div class="poem-sign">(© "The Story of One Person's Feelings". I.S. Zaitsev)</div>
+    </div>
+
+    <div class="poem-box">
+      “If you surrender to the sincerity of your feelings,<br>
+      be prepared to burn to the very last spark.”
+      <div class="poem-sign">(© "The Story of One Person's Feelings". I.S. Zaitsev)</div>
+    </div>
+
+   <div class="poem-box">
+      “Having touched the cradle of happiness,<br>
+      having breathed the air of Paradise,<br>
+      having felt the grace of destiny,<br>
+      continue living in awe and wonder.”
+      <div class="poem-sign">(© "The Story of One Person's Feelings". I.S. Zaitsev)</div>
+   </div>
+
+    <div class="bottom-buy">
+      <a href="contacts.html" class="buy-btn">Buy</a>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <div class="footer-line">
+    <span>Любовь кто ищет сам, тот просто жаждет встреч!</span>
+    <span class="footer-sign">(© «The story of one person's feelings». І.S. Zaitsev)</span>
+  </div>
+</footer>
+
+</body>
+</html>

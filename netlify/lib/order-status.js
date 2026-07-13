@@ -1,0 +1,31 @@
+/**
+ * OMS-01
+ * Order Status Dictionary
+ * PRACTICULARIUM Platform
+ */
+
+const ORDER_STATUS = Object.freeze({
+
+    NEW: "NEW",
+
+    CONFIRMED: "CONFIRMED",
+
+    WAITING_PREPAYMENT: "WAITING_PREPAYMENT",
+
+    PAYMENT_RECEIVED: "PAYMENT_RECEIVED",
+
+    PACKING: "PACKING",
+
+    SHIPPED: "SHIPPED",
+
+    DELIVERED: "DELIVERED",
+
+    COMPLETED: "COMPLETED",
+
+    CANCELLED: "CANCELLED"
+
+});
+
+module.exports = {
+    ORDER_STATUS
+};

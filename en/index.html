@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="“Practicularium” is a book by Ivan Zaitsev about systemic thinking, decision-making and practical management models for real life."><link rel="icon" type="image/png" href="../img/favicon.png">
+<link rel="alternate" hreflang="en" href="/en/index.html">
+<link rel="alternate" hreflang="uk" href="/ua/index.html">
+<link rel="alternate" hreflang="ru" href="/ru/index.html">
+<link rel="alternate" hreflang="x-default" href="/ua/index.html">
+<title>Author — Practicularium</title>
+
+<style>
+:root{
+  --dark-blue:#0b2a3d;
+  --blue:#1e4f6f;
+  --light-blue:#e6f0f6;
+  --yellow:#f5c400;
+}
+
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  font-family:"Segoe UI",Arial,sans-serif;
+  background:#fff;
+  line-height:1.6;
+}
+
+/* ===== HEADER ===== */
+header{
+  background:var(--dark-blue);
+  color:#fff;
+  padding:18px 40px;
+
+  position:sticky;
+  top:0;
+  z-index:1000;
+
+  box-shadow:0 2px 10px rgba(0,0,0,0.2);
+}
+
+.header-line{
+  display:flex;
+  align-items:center;
+  gap:32px;
+}
+
+header h1{
+  margin:0;
+  font-size:30px;
+  letter-spacing:2px;
+  white-space:nowrap;
+}
+
+nav{
+  display:flex;
+  gap:12px;
+  flex:1;
+  flex-wrap:wrap;
+}
+
+nav a{
+  color:#fff;
+  text-decoration:none;
+  padding:6px 10px;
+  border-radius:4px;
+  font-size:14px;
+}
+
+nav a.active{
+  background:var(--yellow);
+  color:#000;
+  font-weight:700;
+}
+
+nav a.poetry{
+   color:#9be39b;
+}
+
+.lang-switch{
+  margin-left:12px;
+  background:#ff4fa3;
+  border-radius:8px;
+  padding:3px;
+
+  display:flex;
+  flex-direction:column;
+
+  gap:2px;
+  min-width:34px;
+}
+
+.lang-switch a{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#ffffff;
+  text-decoration:none;
+  font-weight:700;
+  font-size:10px;
+  line-height:1;
+  padding:2px;
+}
+
+.lang-switch a:hover{
+  opacity:0.8;
+}
+
+.lang-switch a.active-lang{
+  background:rgba(255,255,255,0.25);
+  border-radius:4px;
+}
+
+/* ===== MAIN ===== */
+.main{
+  display:flex;
+  min-height:calc(100vh - 200px);
+}
+
+/* LEFT */
+.left{
+  width:32%;
+  background:var(--blue);
+  color:#fff;
+  padding:40px 30px;
+}
+
+.author-photo{
+  width:100%;
+  border-radius:6px;
+  margin-bottom:28px;
+}
+
+.quote{
+  border-left:4px solid var(--yellow);
+  padding-left:16px;
+  font-style:italic;
+  line-height:1.45;
+  margin-bottom:35px;
+}
+
+.quote-sign{
+  font-size:13px;
+  opacity:.85;
+  margin:10px 0 26px;
+}
+
+.buy-btn{
+  display:inline-block;
+  background:var(--yellow);
+  color:#000;
+  padding:12px 28px;
+  text-decoration:none;
+  font-weight:700;
+  border-radius:6px;
+  transition:.2s;
+}
+
+.buy-btn:hover{
+  background:#ffd633;
+}
+
+/* SOCIAL PANEL */
+.socials{
+  margin-top:10px;
+}
+
+.social-item{
+  display:flex;
+  flex-direction:column;
+  gap:2px;
+  padding:8px 10px;
+  border-radius:4px;
+  font-size:14px;
+  text-decoration:none;
+  color:#fff;
+  margin-bottom:8px;
+}
+
+.social-item span{
+  font-size:12px;
+  opacity:.8;
+}
+
+.fb:hover{background:#1877f2}
+.ig:hover{background:#e1306c}
+.th:hover{background:#000}
+.tt:hover{background:#25f4ee;color:#000}
+.yt:hover{background:#ff0000}
+
+/* RIGHT */
+.right{
+  width:68%;
+  background:var(--light-blue);
+  padding:50px 60px;
+}
+
+.section{
+  margin-bottom:22px;
+}
+
+.section strong{
+  color:var(--blue);
+}
+
+ul{
+  margin:10px 0 0 18px;
+}
+
+li{
+  margin-bottom:6px;
+}
+
+.video-box{
+  position:relative;
+  width:100%;
+  padding-bottom:56.25%;
+  margin-bottom:25px;
+}
+
+.video-box iframe{
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  border-radius:6px;
+  box-shadow:0 8px 20px rgba(0,0,0,0.15);
+}
+
+/* FOOTER */
+footer{
+  background:var(--dark-blue);
+  color:#fff;
+  padding:18px 40px;
+}
+
+.footer-line{
+  display:flex;
+  gap:16px;
+  align-items:center;
+  font-style:italic;
+  font-size:15px;
+}
+
+.footer-sign{
+  font-size:13px;
+  opacity:.85;
+}
+
+/* =========================
+   ADAPTIVE VERSION
+========================= */
+
+@media (max-width: 992px){
+
+  header{
+    padding:18px 20px;
+  }
+
+  .header-line{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:16px;
+  }
+
+  nav{
+    width:100%;
+    justify-content:flex-start;
+  }
+
+  .main{
+    flex-direction:column;
+  }
+
+  .left,
+  .right{
+    width:100%;
+  }
+
+  .right{
+    padding:40px 25px;
+  }
+
+  .left{
+    padding:35px 25px;
+  }
+
+  footer{
+    padding:18px 20px;
+  }
+}
+
+@media (max-width: 600px){
+
+  header{
+    position:static;
+  }
+
+  .header-line{
+    position:relative;
+  }
+
+  .lang-switch{
+    position:absolute;
+    right:0;
+    top:55px;
+  }
+
+  header h1{
+    font-size:22px;
+  }
+
+  nav{
+    gap:6px;
+  }
+
+  nav a{
+    font-size:14px;
+    padding:6px 8px;
+  }
+
+  .left{
+    padding:30px 20px;
+  }
+
+  .right{
+    padding:30px 20px;
+  }
+
+  .footer-line{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:6px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="header-line">
+    <h1>PRACTICULARIUM</h1>
+    <nav>
+      <a href="index.html" class="active">Author</a>
+      <a href="practicularium.html">Practicularium</a>
+      <a href="community.html">Community</a>
+      <a href="models.html">Author's models</a>
+      <a href="contacts.html">Contacts / Buy</a>
+      <a href="poetry.html" class="poetry">Poetry Book</a>
+    </nav>
+
+     <div class="lang-switch">
+      <a href="../ua/index.html">UA</a>
+      <a href="../it/index.html">IT</a>
+      <a href="index.html" class="active-lang">EN</a>
+      <a href="../ru/index.html">RU</a>
+    </div>
+
+  </div>
+</header>
+<div class="main">
+
+  <div class="left">
+    <img src="../img/author.jpg" class="author-photo">
+
+    <div class="quote">
+      Do what you like,<br>
+      and share with those you like.<br>
+      This simple balance<br>
+      has both distribution and motivation.
+    </div>
+
+    <div class="quote-sign">(© «Practicularium». І.S. Zaitsev)</div>
+  
+    <div class="socials">
+      <a href="https://facebook.com/profile.php?id=61579533969713"
+         class="social-item fb" target="_blank">
+        <strong>📘 Facebook</strong>
+        <span>facebook.com/profile.php?id=61579533969713</span>
+      </a>
+
+      <a href="https://instagram.com/practicularium"
+         class="social-item ig" target="_blank">
+        <strong>📸 Instagram</strong>
+        <span>instagram.com/practicularium</span>
+      </a>
+
+      <a href="https://threads.net/@practicularium"
+         class="social-item th" target="_blank">
+        <strong>🧵 Threads</strong>
+        <span>threads.net/@practicularium</span>
+     </a>
+
+     <a href="https://tiktok.com/@practicularium1"
+        class="social-item tt" target="_blank">
+       <strong>🎵 TikTok</strong>
+       <span>tiktok.com/@practicularium1</span>
+     </a>
+
+     <a href="https://youtube.com/@Practicularium"
+        class="social-item yt" target="_blank">
+       <strong>▶ YouTube</strong>
+       <span>youtube.com/@Practicularium</span>
+     </a>
+
+     <a href="https://t.me/practicularium_eng"
+        class="social-item t" target="_blank">
+       <strong>📘 Telegram</strong>
+       <span>t.me/practicularium_eng</span>
+     </a>
+   </div>
+  </div>
+
+  <div class="right">
+
+  <div class="video-box">
+  <iframe 
+    src="https://www.youtube.com/embed/R1FFmVpuX9k?si=8rgPMX4PqK6F6xL4"
+    title="YouTube video player" 
+    frameborder="0"
+    allowfullscreen>
+  </iframe>
+  </div>
+
+   <div class="quote">
+      <strong>There are no instructions in life</strong>.<br>
+      <strong>There are decisions made</strong>.<br>
+      <strong>And there is their research.</strong>.<br>
+      <strong>Everything else is tested only by practice.</strong>                                
+   </div>
+
+    <div class="section">
+      <strong>Welcome!</strong> I am Ivan Zaitsev.
+    </div>
+
+
+  <div class="section">
+      Today, I  <strong>hold a Master of Business Administration (MBA General)</strong>,
+      I am a certified Project Manager,
+      a Master of Metallurgy, and
+      <strong>PRO level AI Content Maker (AI Creator)</strong>.
+    </div>
+
+    <div class="section">
+      <strong>In the past, I have also been:</strong>
+      <ul>
+        <li>a poet and author of the book “The Story of One Man’s Feelings”</li>
+        <li>an assistant to a city council deputy</li>
+        <li>the head of a working group at a regional state administration</li>
+        <li>co-founder and technical director of a manufacturing and trading company</li>
+        <li>founder of a consulting office</li>
+        <li>a freelancer with private practice</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      I have <strong>more than 20 years of practical experience working </strong> with real people — teams, large working groups, management processes, decisions, responsibility, and consequences.
+    </div>
+
+    <div class="section">
+      <strong>For over 15 years,</strong> I have held managerial positions in business, the public sector, and consulting.
+    </div>
+
+    <div class="section">
+      My journey began early — <strong>at the age of 17</strong>,
+      — when I entered university and moved to an unknown me city.
+    </div>
+
+    <div class="section">
+      That was when I first felt the freedom of choice — dangerous, risky, sometimes destructive, yet deeply formative.
+    </div>
+
+    <div class="section">
+      It was this path that gave me immense practical experience and awakened a deep interest in knowledge — 
+      <strong>not academic, but living and conscious</strong>.
+    </div>
+
+    <div class="section">
+      I have always needed to understand things personally:
+      <strong>why something works, how it is structured, and what happens if you apply it as practic in real life.</strong>
+    </div>
+
+    <div class="section">
+      Over time, this drive turned learning into something close to an addiction.
+    </div>
+
+    <div class="section">
+      But most importantly, I always documented the results — 
+      <strong>my own, my colleagues’, and the ideas</strong>,
+      described in books — both successful and flawed.
+    </div>
+
+    <div class="button-wrap">
+      <a href="practicularium.html" class="buy-btn">Continue</a>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <div class="footer-line">
+    <span>It is important not to be afraid to be heard!</span>
+    <span class="footer-sign">(© «Practicularium». І.S. Zaitsev)</span>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="../img/favicon.png">
+<link rel="alternate" hreflang="uk" href="/ua/contact.html">
+<link rel="alternate" hreflang="ru" href="/ru/contact.html">
+<link rel="alternate" hreflang="en" href="/en/contact.html">
+<link rel="alternate" hreflang="it" href="/it/contact.html">
+<link rel="alternate" hreflang="x-default" href="/ua/contact.html">
+<title>Договір публічної оферти — PRACTICULARIUM</title>
+
+<style>
+:root{
+  --dark-blue:#0b2a3d;
+  --blue:#1e4f6f;
+  --light-blue:#e6f0f6;
+  --yellow:#f5c400;
+}
+
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  font-family:"Segoe UI",Arial,sans-serif;
+  background:#fff;
+}
+
+/* ===== HEADER ===== */
+header{
+  background:var(--dark-blue);
+  color:#fff;
+  padding:18px 40px;
+
+  position:sticky;
+  top:0;
+  z-index:1000;
+
+  box-shadow:0 2px 10px rgba(0,0,0,0.2);
+}
+
+.header-line{
+  display:flex;
+  align-items:center;
+  gap:32px;
+  flex-wrap:wrap;
+}
+
+header h1{
+  margin:0;
+  font-size:28px;
+  letter-spacing:2px;
+}
+
+nav{
+  display:flex;
+  gap:12px;
+  flex:1;
+  flex-wrap:wrap;
+}
+
+nav a{
+  color:#fff;
+  text-decoration:none;
+  padding:6px 10px;
+  border-radius:4px;
+  font-size:14px;
+}
+
+nav a.active{
+  background:var(--yellow);
+  color:#000;
+  font-weight:700;
+}
+
+nav a.poetry{
+   color:#9be39b;
+}
+
+.lang-switch{
+  margin-left:12px;
+  background:#ff4fa3;
+  border-radius:8px;
+  padding:3px;
+
+  display:flex;
+  flex-direction:column;
+
+  gap:2px;
+  min-width:34px;
+}
+
+.lang-switch a{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#ffffff;
+  text-decoration:none;
+  font-weight:700;
+  font-size:10px;
+  line-height:1;
+  padding:2px;
+}
+
+.lang-switch a:hover{
+  opacity:0.8;
+}
+
+.lang-switch a.active-lang{
+  background:rgba(255,255,255,0.25);
+  border-radius:4px;
+}
+
+/* ===== MAIN ===== */
+.main{
+  display:block;
+  width:100%;
+}
+
+/* LEFT */
+.left{
+  width:32%;
+  background:var(--blue);
+  color:#fff;
+  padding:40px 30px;
+}
+
+.author-photo{
+  width:100%;
+  border-radius:6px;
+  margin-bottom:26px;
+}
+
+.quote{
+  border-left:4px solid var(--yellow);
+  padding-left:16px;
+  font-style:italic;
+  line-height:1.45;
+}
+
+.quote-sign{
+  font-size:13px;
+  opacity:.85;
+  margin:10px 0 26px;
+}
+
+/* SOCIAL PANEL */
+.socials{
+  margin-top:24px;
+}
+
+.social-item{
+  display:flex;
+  flex-direction:column;
+  gap:2px;
+  padding:8px 10px;
+  border-radius:4px;
+  font-size:14px;
+  text-decoration:none;
+  color:#fff;
+  margin-bottom:8px;
+  transition:.2s;
+}
+
+.social-item span{
+  font-size:12px;
+  opacity:.8;
+  word-break:break-all;
+}
+
+.fb:hover{background:#1877f2}
+.ig:hover{background:#e1306c}
+.th:hover{background:#000}
+.tt:hover{background:#25f4ee;color:#000}
+.yt:hover{background:#ff0000}
+
+/* RIGHT */
+.right{
+  width:100%;
+  background:var(--light-blue);
+  padding:35px 0;
+}
+
+.section{
+  margin-bottom:26px;
+}
+
+.section strong{
+  color:var(--blue);
+}
+
+.list{
+  margin-left:18px;
+}
+
+.list div{
+  margin-bottom:6px;
+}
+
+.section a{
+  word-break:break-all;
+}
+
+/* FORM */
+.form-block{
+  margin-top:40px;
+  padding:30px;
+  background:#fff;
+  border-radius:6px;
+}
+
+.form-block h3{
+  margin-top:0;
+  color:var(--blue);
+}
+
+form{
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+}
+
+input, textarea, select{
+  padding:12px;
+  font-size:15px;
+  border:1px solid #ccc;
+  border-radius:4px;
+  width:100%;
+  background:#fff;
+}
+
+textarea{
+  min-height:120px;
+  resize:vertical;
+}
+
+button{
+  align-self:flex-start;
+  background:var(--yellow);
+  border:none;
+  padding:12px 22px;
+  font-size:15px;
+  font-weight:700;
+  cursor:pointer;
+  border-radius:4px;
+}
+
+/* CONTACT ICONS */
+.after-form{
+  margin-top:30px;
+}
+
+.contact-icons{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  margin:12px 0;
+  flex-wrap:wrap;
+}
+
+.contact-icons img{
+  width:32px;
+  height:32px;
+}
+
+.mail{
+  margin-top:10px;
+  word-break:break-all;
+}
+
+/* FOOTER */
+footer{
+  background:var(--dark-blue);
+  color:#fff;
+  padding:18px 40px;
+}
+
+.footer-line{
+  display:flex;
+  gap:16px;
+  align-items:center;
+  font-style:italic;
+  font-size:15px;
+  flex-wrap:wrap;
+}
+
+.legal-document{
+    max-width:780px;
+    margin:0 auto;
+}
+
+.legal-document h1{
+    margin:0 0 10px;
+    font-size:32px;
+    line-height:1.2;
+}
+
+.legal-subtitle{
+    margin:0 0 30px;
+    font-size:18px;
+    color:#444;
+}
+
+.legal-document section{
+    margin-bottom:24px;
+}
+
+.legal-document h2{
+    margin:0 0 12px;
+    font-size:20px;
+    color:var(--dark-blue);
+}
+
+.legal-document p{
+    margin:0 0 12px;
+    text-align:justify;
+    line-height:1.45;
+}
+
+.legal-document ul{
+    margin:0 0 14px 22px;
+}
+
+.legal-document li{
+    margin-bottom:6px;
+    line-height:1.45;
+}
+
+.legal-back{
+    text-align:center;
+    margin:50px 0 30px;
+}
+
+.back-button{
+    display:inline-block;
+    padding:14px 28px;
+    background:var(--yellow);
+    color:#000;
+    text-decoration:none;
+    font-weight:700;
+    border-radius:6px;
+    transition:.2s;
+}
+
+.back-button:hover{
+    transform:translateY(-2px);
+    box-shadow:0 6px 16px rgba(0,0,0,.2);
+}
+
+/* ========================= */
+/* ===== TABLET 992px ===== */
+/* ========================= */
+@media (max-width: 992px){
+
+  .main{
+    flex-direction:column;
+  }
+
+  .left, .right{
+    width:100%;
+  }
+
+  .right{
+    padding:40px 30px;
+  }
+
+  header{
+    padding:18px 20px;
+  }
+
+  nav{
+    width:100%;
+    justify-content:flex-start;
+  }
+
+  footer{
+    padding:18px 20px;
+  }
+}
+
+/* ========================= */
+/* ===== MOBILE 600px ===== */
+/* ========================= */
+@media (max-width: 600px){
+
+  header{
+    position:static;
+  }
+
+  .header-line{
+    position:relative;
+  }
+
+  .lang-switch{
+    position:absolute;
+    right:0;
+    top:55px;
+  }
+
+  header h1{
+    font-size:22px;
+  }
+
+  nav{
+    gap:6px;
+  }
+
+  nav a{
+    font-size:14px;
+    padding:6px 8px;
+  }
+
+  .left{
+    padding:30px 20px;
+  }
+
+  .right{
+    padding:30px 20px;
+  }
+
+  .footer-line{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:6px;
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="header-line">
+    <h1>ПРАКТИКУЛЯРІЙ</h1>
+    <nav>
+      <a href="../ua/index.html">Автор</a>
+      <a href="../ua/practicularium.html">Практикулярій</a>
+      <a href="../ua/community.html">Ком'юніті</a>
+      <a href="../ua/models.html">Авторські моделі</a>
+      <a href="../ua/contacts.html">Контакти/Купити</a>
+      <a href="../ua/poetry.html" class="poetry">Книга поезія</a>
+    </nav>
+
+  </div>
+</header>
+
+<div class="main">
+
+  <!-- RIGHT -->
+  <div class="right">
+
+    <div class="legal-document">
+
+    <h1>Договір публічної оферти</h1>
+
+      <p class="legal-subtitle">
+      про продаж товарів через Інтернет-магазин PRACTICULARIUM
+      </p>
+
+<section>
+     <h2>1. Загальні положення</h2>
+     <p>1.1. Справжня оферта є офіційною пропозицією фізичної особи-підприємця
+     <strong>Зайцева Івана Сергійовича</strong>, далі за текстом — «Продавець»,
+     укласти Договір купівлі-продажу товарів дистанційним способом,
+     тобто через Інтернет-магазин,далі за текстом — «Договір»,
+     та розміщує Публічну оферту (пропозицію) на офіційному інтернет-сайті Продавця
+     <strong>https://practicularium.netlify.app </strong> (далі — «Інтернет-сайт»).</p>
+     <p>1.2. Моментом повного та безумовного прийняття Покупцем пропозиції Продавця
+     (акцептом) укласти електронний договір купівлі-продажу товарів вважається факт оплати Покупцем замовлення
+      на умовах цього Договору, у строки та за цінами, вказаними на Інтернет-сайті Продавця.</p>
+</section>
+
+<section>
+     <h2>2. Поняття та визначення</h2>
+     <p>2.1. У цій оферті, якщо контекст не вимагає іншого, наведені нижче терміни мають такі значення:</p>
+      <ul>
+        <li> <strong>«Товар»</strong> — матеріальний об'єкт,інформація про який розміщена на Сайті.</li>
+        <li><strong>«Інтернет-магазин»</strong> — засіб для подання або реалізації товару, роботи чи послуги шляхом здійснення електронної угоди
+        відповідно до Закону України «Про електронну комерцію».</li>
+        <li><strong>«Продавець»</strong> — фізична особа-підприємець, що реалізує товари, представлені на Інтернет-сайті.</li>
+        <li><strong>«Покупець»</strong> — фізична особа, яка уклала з Продавцем Договір на умовах, викладених нижче.</li>
+        <li><strong>«Замовлення»</strong> — вибір окремих позицій із переліку товарів,зазначених Покупцем
+        під час оформлення замовлення та проведення оплати.</li>
+      </ul>
+</section>
+
+<section>
+    <h2>3. Предмет Договору</h2>
+    <p>3.1. Продавець зобов'язується передати у власність Покупця Товар, а Покупець зобов'язується
+    сплатити та прийняти Товар на умовах цього Договору.</p>
+    <p>Цей Договір регулює купівлю-продаж товарів в Інтернет-магазині, в тому числі:</p>
+     <ul>
+       <li>добровільний вибір Покупцем товарів;</li>
+       <li>самостійне оформлення замовлення;</li>
+       <li>оплату оформленого замовлення;</li>
+       <li>обробку та доставку товару Покупцю.</li>
+       </ul>
+</section>
+
+<section>
+    <h2>4. Порядок оформлення замовлення</h2>
+    <p>4.1. Покупець має право оформити замовлення на будь-який товар, представлений на Сайті Інтернет-магазину та наявний у продажу.</p>
+    <p>4.2. Кожна позиція може бути представлена в замовленні у будь-якій кількості.</p>
+    <p>4.3. За відсутності товару на складі Продавець повідомляє Покупця телефоном або електронною поштою.</p>
+    <p>4.4. У разі відсутності товару Покупець має право:</p>
+     <ul>
+       <li>замінити товар аналогічним;</li>
+       <li>відмовитися від товару;</li>
+       <li>скасувати замовлення.</li>
+     </ul>
+</section>
+
+<section>
+    <h2>5. Порядок оплати замовлення</h2>
+    <h3>Накладним платежем</h3>
+    <p>5.1. Оплата здійснюється за фактом отримання товару у відділенні транспортної компанії готівкою у національній валюті України.</p>
+    <p>5.2. При ненадходженні коштів Продавець залишає за собою право анулювати замовлення.</p>
+    <h3>Оплата через систему NovaPay</h3>
+    <p>5.3. Оплата здійснюєтьсяна сайті під час оформлення замовлення.</p>
+    <p>5.4. При ненадходженні коштів Продавець залишає за собою право анулювати замовлення.</p>
+</section>
+
+<section>
+    <h2>6. Умови доставки замовлення</h2>
+    <p>6.1. Доставка товарів, придбаних в Інтернет-магазині PRACTICULARIUM, здійснюється службами доставки, 
+	обраними Покупцем під час оформлення Замовлення.</p>
+    <p>Доставка може здійснюватися:</p>
+     <ul>
+       <li>до відділення поштового оператора;</li>
+       <li>до поштомату;</li>
+       <li>кур'єром за адресою Покупця (за наявності такої послуги).</li>
+     </ul>
+</section>
+
+<section>
+    <h2>7. Права та обов'язки сторін</h2>
+    <h3>7.1. Продавець має право:</h3>
+     <ul>
+       <li>в односторонньому порядку призупинити виконання Замовлення у разі порушення Покупцем умов цього Договору;</li>
+       <li>вносити зміни до асортименту товарів, цін та умов продажу без попереднього повідомлення, якщо це не впливає на вже підтверджені Замовлення.</li>
+     </ul>
+    <h3>7.2. Покупець зобов'язаний:</h3>
+     <ul>
+       <li>своєчасно оплатити Замовлення відповідно до обраного способу оплати;</li>
+       <li>надати достовірну інформацію під час оформлення Замовлення;</li>
+       <li>отримати Замовлення у строки, визначені службою доставки.</li>
+     </ul>
+    <h3>7.3. Покупець має право:</h3>
+     <ul>
+       <li>оформити Замовлення в Інтернет-магазині;</li>
+       <li>укласти електронний договір купівлі-продажу;</li>
+       <li>вимагати від Продавця належного виконання умов цього Договору.</li>
+     </ul>
+</section>
+
+<section>
+    <h2>8. Відповідальність сторін</h2>
+    <p>8.1. Сторони несуть відповідальність за невиконання або неналежне виконання умов цього Договору відповідно до законодавства України.</p>
+    <p>8.2. Продавець не несе відповідальності за:</p>
+     <ul>
+       <li>зміну виробником характеристик або зовнішнього вигляду товару;</li>
+       <li>незначну відмінність кольору товару, пов'язану з особливостями відображення різних екранів;</li>
+       <li>достовірність інформації, наданої Покупцем під час оформлення Замовлення;</li>
+       <li>затримки доставки, що виникли з причин, незалежних від Продавця;</li>
+       <li>неправомірне використання Покупцем мережі Інтернет або своїх облікових даних.</li>
+     </ul>
+    <p>8.3. Покупець самостійно відповідає за використання свого доступу до мережі Інтернет та наслідки своїх дій.</p>
+    <p>8.4. У разі виникнення обставин непереборної сили Сторони звільняються від відповідальності на час дії таких обставин.</p>
+    <p>8.5. Усі спори Сторони прагнуть вирішити шляхом переговорів.</p>
+</section>
+
+<section>
+    <h2>9. Інші умови</h2>
+    <p>9.1. Інтернет-магазин залишає за собою право в односторонньому порядку вносити зміни до цього Договору за умови попередньої публікації його
+    на сайті <strong>https://practicularium.netlify.app</strong>.</p>
+    <p>9.2. Інтернет-магазин створений для організації дистанційного способу продажу товарів через Інтернет.</p>
+    <p>9.3. Покупець несе відповідальність за достовірність зазначеної під час оформлення Замовлення інформації. При цьому, при здійсненні акцепту
+    (оформлення Замовлення та подальшої оплати товару), Покупець надає Продавцю свою беззастережну згоду на збирання, обробку, зберігання,
+    використання своїх персональних даних у розумінні Закону України «Про захист персональних даних».</p>
+    <p>9.4. Оплата Покупцем оформленого в Інтернет-магазині Замовлення означає повну згоду Покупця з умовами Договору купівлі-продажу(Публічної оферти).</p>
+    <p>9.5. Фактичною датою електронної угоди між сторонами є дата прийняття умов відповідно до статті 11 Закону України «Про електронну комерцію».</p>
+    <p>9.6. Використання ресурсу Інтернет-магазину для попереднього перегляду товару, а також для оформлення Замовлення для Покупця є безкоштовним.</p>
+    <p>9.7. Інформація, що надається Покупцем, є конфіденційною. Інтернет-магазин використовує інформацію про Покупця виключно
+    з метою обробки Замовлення, відправлення повідомлень, доставки товару, здійснення взаєморозрахунків та в інших випадках,
+    передбачених чинним законодавством України.</p>
+</section>
+
+<section>
+    <h2>10. Порядок повернення товару належної якості</h2>
+    <p>10.1. Повернення товару до Інтернет-магазину здійснюється відповідно до чинного законодавства України.</p>
+	<p>10.2. Повернення товару до Інтернет-магазину здійснюється за рахунок Покупця.</p>
+    <p>10.3. При поверненні Покупцем товару належної якості Інтернет-магазин повертає йому сплачену за товар грошову суму за фактом повернення товару
+    за вирахуванням компенсації витрат Інтернет-магазину, пов'язаних з доставкою товару Покупцю.</p>
+</section>
+
+<section>
+    <h2>11. Строк дії договору</h2>
+    <p>11.1. Електронний договір вважається укладеним з моменту отримання особою, яка направила пропозицію укласти такий договір,
+    відповіді про прийняття цієї пропозиції у порядку, визначеному частиною шостою статті 11 Закону України «Про електронну комерцію».</p>
+    <p>11.2. До закінчення терміну дії цей Договір може бути розірваний за взаємною згодою сторін до моменту фактичної доставки товару
+    шляхом повернення коштів.</p>
+    <p>11.3. Сторони мають право розірвати цей Договір в односторонньому порядку у разі невиконання однією із сторін умов цього Договору,
+    а також у випадках, передбачених чинним законодавством України.</p>
+</section>
+
+<section>
+    <h2>12. Адреса та реквізити Продавця</h2>
+    <p><strong>Фізична особа-підприємець:</strong> Зайцев Іван Сергійович</p>
+    <p><strong>Місцезнаходження:</strong> Україна, 69032, Запорізька обл., місто Запоріжжя, вул. Незалежної України, будинок 31, квартира 125</p>
+    <p><strong>РНОКПП:</strong> 2978019059</p>
+    <p><strong>Поточний рахунок (IBAN):</strong> UA513348510000000026004355272</p>
+    <p><strong>Банк:</strong> АТ «ПУМБ»</p>
+    <p><strong>МФО:</strong> 334851</p>
+    <p><strong>Телефон:</strong> +380 93 560 43 19</p>
+    <p><strong>E-mail:</strong> practicularium@gmail.com</p>
+    <p><strong>Веб-сайт:</strong> https://practicularium.netlify.app</p>
+</section>
+
+    </div>
+
+  </div>
+
+<div class="legal-back">
+    <a href="../../it/contacts.html" class="back-button">
+        ← Повернутися до оформлення замовлення
+    </a>
+</div>
+
+<footer>
+  <div class="footer-line">
+    <span>Очікування особистого щастя – це не просто помилка, це велика вада.</span>
+    <span class="footer-sign">(© «Практикулярій». І.С. Зайцев)</span>
+  </div>
+</footer>
+
+   <script src="../js/delivery-ui.js"></script>
+   <script src="../js/order.js"></script>
+
+</body>
+</html>

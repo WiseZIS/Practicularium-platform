@@ -1,0 +1,33 @@
+/**
+ * OMS-01
+ * Order Business Events
+ * PRACTICULARIUM Platform
+ *
+ * Official Business Events Dictionary
+ */
+
+const ORDER_EVENTS = Object.freeze({
+
+    CREATED: "ORDER_CREATED",
+
+    CONFIRMED: "ORDER_CONFIRMED",
+
+    PREPAYMENT_REQUESTED: "ORDER_PREPAYMENT_REQUESTED",
+
+    PAYMENT_RECEIVED: "ORDER_PAYMENT_RECEIVED",
+
+    PACKING_STARTED: "ORDER_PACKING_STARTED",
+
+    SHIPPED: "ORDER_SHIPPED",
+
+    DELIVERED: "ORDER_DELIVERED",
+
+    COMPLETED: "ORDER_COMPLETED",
+
+    CANCELLED: "ORDER_CANCELLED"
+
+});
+
+module.exports = {
+    ORDER_EVENTS
+};

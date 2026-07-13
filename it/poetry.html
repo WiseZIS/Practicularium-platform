@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="../img/favicon.png">
+<link rel="alternate" hreflang="uk" href="/ua/poetry.html">
+<link rel="alternate" hreflang="ru" href="/ru/poetry.html">
+<link rel="alternate" hreflang="en" href="/en/poetry.html">
+<link rel="alternate" hreflang="it" href="/it/poetry.html">
+<link rel="alternate" hreflang="x-default" href="/ua/poetry.html">
+<title>La Storia dei Sentimenti di una Persona — Ivan Zaitsev</title>
+
+<style>
+:root{
+  --dark-green:#0f3d2e;
+  --green:#1f6b4f;
+  --light-green:#e8f4ef;
+  --yellow:#f5c400;
+}
+
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  font-family:"Segoe UI",Arial,sans-serif;
+  background:#fff;
+  color:#1a1a1a;
+}
+
+/* ===== HEADER ===== */
+header{
+  background:var(--dark-green);
+  color:#fff;
+  padding:18px 40px;
+
+  position:sticky;
+  top:0;
+  z-index:1000;
+
+  box-shadow:0 2px 10px rgba(0,0,0,0.2);
+}
+
+.header-line{
+  display:flex;
+  align-items:center;
+  gap:32px;
+  flex-wrap:wrap;
+}
+
+header h1{
+  margin:0;
+  font-size:28px;
+  letter-spacing:2px;
+}
+
+nav{
+  display:flex;
+  gap:12px;
+  flex:1;
+  flex-wrap:wrap;
+}
+
+nav a{
+  color:#fff;
+  text-decoration:none;
+  padding:6px 10px;
+  border-radius:4px;
+  font-size:14px;
+}
+
+nav a.active{
+  background:var(--yellow);
+  color:#000;
+  font-weight:700;
+}
+
+nav a.active.poetry{
+  color:#000 !important;
+}
+
+nav a.poetry{
+   color:#9be39b;
+}
+
+.lang-switch{
+  margin-left:12px;
+  background:#ff4fa3;
+  border-radius:8px;
+  padding:3px;
+
+  display:flex;
+  flex-direction:column;
+
+  gap:2px;
+  min-width:34px;
+}
+
+.lang-switch a{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#ffffff;
+  text-decoration:none;
+  font-weight:700;
+  font-size:10px;
+  line-height:1;
+  padding:2px;
+}
+
+.lang-switch a:hover{
+  opacity:0.8;
+}
+
+.lang-switch a.active-lang{
+  background:rgba(255,255,255,0.25);
+  border-radius:4px;
+}
+
+/* ===== MAIN ===== */
+.main{
+  display:flex;
+  min-height:calc(100vh - 200px);
+}
+
+/* LEFT */
+.left{
+  width:32%;
+  background:var(--green);
+  color:#fff;
+  padding:40px 30px;
+}
+
+.book-cover{
+  width:100%;
+  border-radius:6px;
+  margin-bottom:24px;
+}
+
+.quote{
+  border-left:4px solid var(--yellow);
+  padding-left:16px;
+  font-style:italic;
+  line-height:1.5;
+}
+
+.quote-sign{
+  font-size:13px;
+  opacity:.85;
+  margin:10px 0 18px;
+}
+
+.buy-btn{
+  display:inline-block;
+  background:var(--yellow);
+  color:#000;
+  padding:12px 26px;
+  border-radius:6px;
+  font-weight:700;
+  text-decoration:none;
+  margin-bottom:26px;
+  transition:.2s ease;
+}
+
+.buy-btn:hover{
+  background:#ffd633;
+}
+
+/* SOCIAL PANEL */
+.socials{
+  margin-top:30px;
+}
+
+.social-item{
+  display:flex;
+  flex-direction:column;
+  gap:2px;
+  padding:8px 10px;
+  border-radius:4px;
+  font-size:14px;
+  text-decoration:none;
+  color:#fff;
+  margin-bottom:8px;
+  transition:0.2s ease;
+}
+
+.social-item span{
+  font-size:12px;
+  opacity:.8;
+}
+
+.fb:hover{background:#1877f2}
+.ig:hover{background:#e1306c}
+.th:hover{background:#000}
+.tt:hover{background:#25f4ee;color:#000}
+
+/* RIGHT */
+.right{
+  width:68%;
+  background:var(--light-green);
+  padding:46px 60px;
+  line-height:1.6;
+}
+
+.section{
+  margin-bottom:18px;
+}
+
+.section strong{
+  color:var(--green);
+}
+
+.poem-box{
+  background:#ffffff;
+  border-left:4px solid var(--green);
+  padding:14px 18px;
+  margin:22px 0;
+  font-style:italic;
+}
+
+.poem-sign{
+  font-size:13px;
+  opacity:.7;
+  margin-top:6px;
+}
+
+.bottom-buy{
+  margin-top:30px;
+}
+
+/* FOOTER */
+footer{
+  background:var(--dark-green);
+  color:#fff;
+  padding:18px 40px;
+}
+
+.footer-line{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  font-style:italic;
+  font-size:15px;
+  flex-wrap:wrap;
+}
+
+.footer-sign{
+  font-size:13px;
+  opacity:.85;
+}
+
+/* ===== ADAPTIVE ===== */
+@media (max-width: 992px){
+
+  .main{
+    flex-direction:column;
+  }
+
+  .left, .right{
+    width:100%;
+  }
+
+  .right{
+    padding:40px 30px;
+  }
+
+  header{
+    padding:18px 20px;
+  }
+
+  nav{
+    width:100%;
+    justify-content:flex-start;
+  }
+
+  footer{
+    padding:18px 20px;
+  }
+}
+
+@media (max-width: 600px){
+
+  header{
+    position:static;
+  }
+
+  .header-line{
+    position:relative;
+  }
+
+  .lang-switch{
+    position:absolute;
+    right:0;
+    top:85px;
+  }
+
+  header h1{
+    font-size:22px;
+  }
+
+  nav{
+    gap:6px;
+  }
+
+  nav a{
+    font-size:14px;
+    padding:6px 8px;
+  }
+
+  .left{
+    padding:30px 20px;
+  }
+
+  .right{
+    padding:30px 20px;
+  }
+
+  .footer-line{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:6px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="header-line">
+    <h1>PRACTICULARIUM</h1>
+    <nav>
+      <a href="index.html">L'Autore</a>
+      <a href="practicularium.html">PRACTICULARIUM</a>
+      <a href="community.html">La Community</a>
+      <a href="models.html">Modelli dell'Autore</a>
+      <a href="contacts.html">Contatti / Acquista</a>
+      <a href="poetry.html" class="active poetry">Libro di Poesia</a>
+    </nav>
+
+    <div class="lang-switch">
+      <a href="../ua/poetry.html">UA</a>
+      <a href="poetry.html" class="active-lang">IT</a>
+      <a href="../en/poetry.html">EN</a>
+      <a href="../ru/poetry.html">RU</a>
+</div>
+
+  </div>
+</header>
+
+<div class="main">
+
+  <!-- LEFT -->
+  <div class="left">
+    <img src="../img/poetry-book.jpg" alt="Обложка книги" class="book-cover">
+
+    <div class="quote">
+      Non sono un poeta, ma un compagno della Musa,<br>
+      un semplice viandante sul suo cammino.<br>
+      Il destino ha voluto unirci<br>
+      nei giorni difficili e nei tremiti dell'anima.
+    </div>
+    <div class="quote-sign">(© «La Storia dei Sentimenti di una Persona». I.S. Zaitsev)</div>
+
+    <a href="contacts.html" class="buy-btn">Acquista</a>
+
+    <div class="socials">
+      <a href="https://facebook.com/profile.php?id=61579622259373"      
+         class="social-item fb" target="_blank"
+         rel="noopener noreferrer">
+        <strong>📘 Facebook</strong>
+        <span>facebook.com/profile.php?id=61579622259373</span>
+      </a>
+
+      <a href="https://instagram.com/book.feelstor" 
+         class="social-item ig" 
+         target="_blank"
+         rel="noopener noreferrer">
+        <strong>📸 Instagram</strong>
+        <span>instagram.com/book.feelstor</span>
+      </a>
+
+      <a href="https://threads.com/@book.feelstor" 
+         class="social-item th" target="_blank"
+         rel="noopener noreferrer">
+        <strong>🧵 Threads</strong>
+        <span>threads.com/@book.feelstor</span>
+      </a>
+
+      <a href="https://tiktok.com/@feelings.story1" 
+         class="social-item tt" target="_blank"
+         rel="noopener noreferrer">
+        <strong>🎵 TikTok</strong>
+        <span>tiktok.com/@feelings.story1</span>
+      </a>
+    </div>
+  </div>
+ 
+  <!-- RIGHT -->
+  <div class="right">
+
+    <!-- NEW TEXT BLOCK -->
+    <div class="section">
+      <strong>«La Storia dei Sentimenti di una Persona»</strong>
+      è una testimonianza poetica di stati d'animo,
+      emozioni e trasformazioni interiori
+      che, in modi diversi, appartengono a ciascuno di noi.
+    </div>
+
+    <div class="section">
+      Questo libro <strong>non appartiene al progetto PRACTICULARIUM</strong>.<br>
+      Rappresenta una fase conclusa del mio passato,
+      conservata come memoria ed esperienza.
+      La maggior parte dei testi è stata scritta molto prima del 2014
+      e prevalentemente in lingua russa.
+    </div>
+
+    <div class="section">
+      Questo libro non parla di parole eleganti.<br>
+      Parla di <strong>sentimenti autentici</strong>,
+      vissuti e compresi attraverso l'esperienza.
+    </div>
+
+    <div class="section">
+      Per me questo libro rappresenta
+      <strong>una scoperta di me stesso</strong>.<br>
+      La scoperta delle possibilità nascoste dentro ogni persona,
+      spesso invisibili persino a chi le possiede.
+    </div>
+
+    <div class="section">
+      Prendere coscienza del proprio potenziale interiore
+      è difficile senza un impulso proveniente dall'esterno.<br>
+      <strong>Per me quell'impulso sono stati i sentimenti.</strong>
+    </div>
+
+    <div class="section">
+      Non avrei mai pensato di poter scrivere anche una sola poesia.<br>
+      Non ho mai studiato poesia.<br>
+      Sono stato soltanto
+      <strong>un tramite tra l'ispirazione e la carta.</strong>
+    </div>
+
+    <div class="section">
+      Nessun verso di questo libro è stato scritto con forzatura.<br>
+      Anche i versi più malinconici fanno parte di un insieme felice e prezioso.
+    </div>
+
+    <!-- POEMS -->
+    <div class="section">
+      <strong>Nota per il lettore.</strong><br>
+      I frammenti poetici riportati di seguito non rappresentano una traduzione letterale dell'opera originale.
+      Si tratta di adattamenti liberi realizzati per trasmettere al lettore italiano il significato, l'emozione e l'atmosfera dei versi dell'autore.
+    </div>
+
+    <div class="poem-box">
+      «Non possiamo comprendere la forza della separazione,<br>
+      senza aver apprezzato la magia dell'incontro.»
+      <div class="poem-sign">(© "La Storia dei Sentimenti di una Persona". I.S. Zaitsev)</div>
+    </div>
+
+    <div class="poem-box">
+      «Se ti abbandoni alla sincerità dei sentimenti,<br>
+      sii pronto a bruciare fino all'ultima scintilla.»
+      <div class="poem-sign">(© "La Storia dei Sentimenti di una Persona". I.S. Zaitsev)</div>
+    </div>
+
+    <div class="poem-box">
+      «Dopo aver sfiorato il grembo della felicità,<br>
+      impregnato del profumo del Paradiso,<br>
+      toccato dalla grazia del destino,<br>
+      continua a vivere tremando di meraviglia.»
+      <div class="poem-sign">(© "La Storia dei Sentimenti di una Persona". I.S. Zaitsev)</div>
+    </div>
+
+    <div class="bottom-buy">
+      <a href="contacts.html" class="buy-btn">Acquista</a>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <div class="footer-line">
+    <span>Chi cerca l'amore, in realtà desidera semplicemente un incontro!</span>
+    <span class="footer-sign">(© "La Storia dei Sentimenti di una Persona". I.S. Zaitsev)</span>
+  </div>
+</footer>
+
+</body>
+</html>

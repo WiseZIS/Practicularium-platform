@@ -1,0 +1,327 @@
+/* ==========================================================
+   PRACTICULARIUM Platform 2.0
+   LEGAL DOCUMENTS
+   Version: 1.0
+========================================================== */
+
+
+/* ==========================================================
+   PAGE
+========================================================== */
+
+.legal-page {
+    background: var(--background-color);
+    padding: 60px 20px 80px;
+}
+
+
+/* ==========================================================
+   CONTAINER
+========================================================== */
+
+.legal-container {
+    max-width: 980px;
+    margin: 0 auto;
+}
+
+
+/* ==========================================================
+   DOCUMENT
+========================================================== */
+
+.legal-document {
+
+    background: #ffffff;
+
+    border-radius: 18px;
+
+    padding: 60px;
+
+    box-shadow:
+        0 10px 35px rgba(0,0,0,.08);
+
+}
+
+
+/* ==========================================================
+   HEADER
+========================================================== */
+
+.legal-header {
+    margin-bottom: 40px;
+    padding-bottom: 30px;
+    border-bottom: 2px solid var(--accent-color);
+}
+
+.legal-header h1 {
+
+    margin: 0 0 18px;
+
+    color: var(--primary-color);
+
+    font-size: 2.4rem;
+
+    line-height: 1.2;
+}
+
+.legal-subtitle {
+
+    margin: 0;
+
+    color: #666;
+
+    font-size: 1.05rem;
+
+    line-height: 1.8;
+}
+
+
+/* ==========================================================
+   NAVIGATION
+========================================================== */
+
+.legal-nav {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 12px;
+
+    margin-bottom: 45px;
+
+}
+
+.legal-nav a {
+
+    display: inline-block;
+
+    padding: 10px 18px;
+
+    background: #f5f7fb;
+
+    border-radius: 30px;
+
+    color: var(--primary-color);
+
+    text-decoration: none;
+
+    transition: .25s;
+
+    font-weight: 500;
+
+}
+
+.legal-nav a:hover {
+
+    background: var(--primary-color);
+
+    color: white;
+
+}
+
+
+/* ==========================================================
+   SECTIONS
+========================================================== */
+
+.legal-section {
+
+    margin-bottom: 50px;
+
+}
+
+.legal-section:last-child {
+
+    margin-bottom: 0;
+
+}
+
+.legal-section h2 {
+
+    color: var(--primary-color);
+
+    margin-bottom: 20px;
+
+    font-size: 1.55rem;
+
+}
+
+.legal-section p {
+
+    margin-bottom: 18px;
+
+    color: #333;
+
+    line-height: 1.9;
+
+    text-align: justify;
+
+}
+
+.legal-section ul,
+.legal-section ol {
+
+    padding-left: 28px;
+
+    margin: 20px 0;
+
+}
+
+.legal-section li {
+
+    margin-bottom: 12px;
+
+    line-height: 1.8;
+
+}
+
+
+/* ==========================================================
+   UPDATE
+========================================================== */
+
+.legal-update {
+
+    margin-top: 60px;
+
+    padding-top: 25px;
+
+    border-top: 1px solid #e5e5e5;
+
+    color: #666;
+
+}
+
+
+/* ==========================================================
+   RELATED
+========================================================== */
+
+.legal-footer {
+
+    margin-top: 35px;
+
+}
+
+.legal-footer h3 {
+
+    margin-bottom: 18px;
+
+    color: var(--primary-color);
+
+}
+
+.legal-footer ul {
+
+    list-style: none;
+
+    padding: 0;
+
+    margin: 0;
+
+}
+
+.legal-footer li {
+
+    margin-bottom: 10px;
+
+}
+
+.legal-footer a {
+
+    color: var(--primary-color);
+
+    text-decoration: none;
+
+    transition: .25s;
+
+}
+
+.legal-footer a:hover {
+
+    color: var(--accent-color);
+
+}
+
+
+/* ==========================================================
+   LINKS
+========================================================== */
+
+.legal-document a {
+
+    color: var(--primary-color);
+
+}
+
+.legal-document a:hover {
+
+    color: var(--accent-color);
+
+}
+
+
+/* ==========================================================
+   TABLES
+========================================================== */
+
+.legal-document table {
+
+    width: 100%;
+
+    border-collapse: collapse;
+
+    margin: 30px 0;
+
+}
+
+.legal-document th,
+.legal-document td {
+
+    border: 1px solid #ddd;
+
+    padding: 14px;
+
+}
+
+.legal-document th {
+
+    background: #f6f8fc;
+
+}
+
+
+/* ==========================================================
+   MOBILE
+========================================================== */
+
+@media (max-width: 900px) {
+
+    .legal-page {
+
+        padding: 35px 15px 50px;
+
+    }
+
+    .legal-document {
+
+        padding: 35px 28px;
+
+        border-radius: 14px;
+
+    }
+
+    .legal-header h1 {
+
+        font-size: 2rem;
+
+    }
+
+    .legal-section h2 {
+
+        font-size: 1.35rem;
+
+    }
+
+}

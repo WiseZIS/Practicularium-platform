@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="../img/favicon.png">
+<link rel="alternate" hreflang="uk" href="/ua/practicularium.html">
+<link rel="alternate" hreflang="ru" href="/ru/practicularium.html">
+<link rel="alternate" hreflang="en" href="/en/practicularium.html">
+<link rel="alternate" hreflang="it" href="/it/practicularium.html">
+<link rel="alternate" hreflang="x-default" href="/ua/practicularium.html">
+<title>PRACTICULARIUM — Il Libro</title>
+
+<style>
+:root{
+  --dark-blue:#0b2a3d;
+  --blue:#1e4f6f;
+  --light-blue:#e6f0f6;
+  --yellow:#f5c400;
+}
+
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  font-family:"Segoe UI",Arial,sans-serif;
+  background:#fff;
+}
+
+/* ===== HEADER ===== */
+header{
+  background:var(--dark-blue);
+  color:#fff;
+  padding:18px 40px;
+
+  position:sticky;
+  top:0;
+  z-index:1000;
+
+  box-shadow:0 2px 10px rgba(0,0,0,0.2);
+}
+
+.header-line{
+  display:flex;
+  align-items:center;
+  gap:32px;
+}
+
+header h1{
+  margin:0;
+  font-size:30px;
+  letter-spacing:2px;
+  white-space:nowrap;
+}
+
+nav{
+  display:flex;
+  gap:12px;
+  flex:1;
+  flex-wrap:wrap;
+}
+
+nav a{
+  color:#fff;
+  text-decoration:none;
+  padding:6px 10px;
+  border-radius:4px;
+  font-size:14px;
+}
+
+nav a.active{
+  background:var(--yellow);
+  color:#000;
+  font-weight:700;
+}
+
+nav a.poetry{
+   color:#9be39b;
+}
+
+.lang-switch{
+  margin-left:12px;
+  background:#ff4fa3;
+  border-radius:8px;
+  padding:3px;
+
+  display:flex;
+  flex-direction:column;
+
+  gap:2px;
+  min-width:34px;
+}
+
+.lang-switch a{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#ffffff;
+  text-decoration:none;
+  font-weight:700;
+  font-size:10px;
+  line-height:1;
+  padding:2px;
+}
+
+.lang-switch a:hover{
+  opacity:0.8;
+}
+
+.lang-switch a.active-lang{
+  background:rgba(255,255,255,0.25);
+  border-radius:4px;
+}
+
+/* ===== MAIN ===== */
+.main{
+  display:flex;
+  min-height:calc(100vh - 200px);
+}
+
+/* LEFT */
+.left{
+  width:32%;
+  background:var(--blue);
+  color:#fff;
+  padding:40px 30px;
+}
+
+.book-cover{
+  width:100%;
+  border-radius:6px;
+  margin-bottom:28px;
+}
+
+.quote{
+  border-left:4px solid var(--yellow);
+  padding-left:16px;
+  font-style:italic;
+  line-height:1.45;
+}
+
+.quote-sign{
+  font-size:13px;
+  opacity:.85;
+  margin:10px 0 22px;
+}
+
+.buy-button{
+  display:inline-block;
+  background:var(--yellow);
+  color:#000;
+  padding:12px 26px;
+  font-weight:700;
+  text-decoration:none;
+  border-radius:6px;
+}
+
+.buy-button:hover{
+  background:#ffd633;
+}
+
+/* SOCIAL PANEL */
+.socials{
+  margin-top:30px;
+}
+
+.social-item{
+  display:flex;
+  flex-direction:column;
+  gap:2px;
+  padding:8px 10px;
+  border-radius:4px;
+  font-size:14px;
+  text-decoration:none;
+  color:#fff;
+  margin-bottom:8px;
+}
+
+.social-item span{
+  font-size:12px;
+  opacity:.8;
+}
+
+.fb:hover{background:#1877f2}
+.ig:hover{background:#e1306c}
+.th:hover{background:#000}
+.tt:hover{background:#25f4ee;color:#000}
+.yt:hover{background:#ff0000}
+
+/* RIGHT */
+.right{
+  width:68%;
+  background:var(--light-blue);
+  padding:50px 60px;
+  line-height:1.5;
+}
+
+.section{
+  margin-bottom:24px;
+}
+
+.section strong{
+  color:var(--blue);
+}
+
+ul{
+  margin:10px 0 0 18px;
+}
+
+li{
+  margin-bottom:6px;
+}
+
+/* BOTTOM BUTTON */
+.button-wrap{
+  margin-top:40px;
+}
+
+/* FOOTER */
+footer{
+  background:var(--dark-blue);
+  color:#fff;
+  padding:18px 40px;
+}
+
+.footer-line{
+  display:flex;
+  gap:16px;
+  align-items:center;
+  font-style:italic;
+  font-size:15px;
+}
+
+.footer-sign{
+  font-size:13px;
+  opacity:.85;
+}
+
+/* =========================
+   ADAPTIVE VERSION
+========================= */
+
+@media (max-width: 992px){
+
+  header{
+    padding:18px 20px;
+  }
+
+  .header-line{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:16px;
+  }
+
+  nav{
+    width:100%;
+    justify-content:flex-start;
+  }
+
+  .main{
+    flex-direction:column;
+  }
+
+  .left,
+  .right{
+    width:100%;
+  }
+
+  .left{
+    padding:35px 25px;
+  }
+
+  .right{
+    padding:40px 25px;
+  }
+
+  footer{
+    padding:18px 20px;
+  }
+}
+
+@media (max-width: 600px){
+
+  header{
+    position:static;
+  }
+
+  .header-line{
+    position:relative;
+  }
+
+  .lang-switch{
+    position:absolute;
+    right:0;
+    top:55px;
+  }
+
+  header h1{
+    font-size:22px;
+  }
+
+  nav{
+    gap:6px;
+  }
+
+  nav a{
+    font-size:14px;
+    padding:6px 8px;
+  }
+
+  .left{
+    padding:30px 20px;
+  }
+
+  .right{
+    padding:30px 20px;
+  }
+
+  .footer-line{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:6px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="header-line">
+    <h1>PRACTICULARIUM</h1>
+    <nav>
+      <a href="index.html">L'Autore</a>
+      <a href="practicularium.html" class="active">PRACTICULARIUM</a>
+      <a href="community.html">La Community</a>
+      <a href="models.html">Modelli dell'Autore</a>
+      <a href="contacts.html">Contatti / Acquista</a>
+      <a href="poetry.html" class="poetry">Libro di Poesia</a>
+    </nav>
+
+    <div class="lang-switch">
+      <a href="../ua/practicularium.html">UA</a>
+      <a href="practicularium.html" class="active-lang">IT</a>
+      <a href="../en/practicularium.html">EN</a>
+      <a href="../ru/practicularium.html">RU</a>
+</div>
+
+  </div>
+</header>
+
+<div class="main">
+
+  <div class="left">
+    <img src="../img/practicularium-cover.jpg" class="book-cover">
+
+    <div class="quote">
+      Migliorare sé stessi significa migliorare non solo la propria vita, ma anche quella degli altri.
+    </div>
+    <div class="quote-sign">(© PRACTICULARIUM. I.S. Zaitsev)</div>
+
+    <a href="contacts.html" class="buy-button">Acquista</a>
+
+    <div class="socials">
+      <a href="https://facebook.com/profile.php?id=61579533969713" class="social-item fb" target="_blank">
+        <strong>📘 Facebook</strong>
+        <span>facebook.com/profile.php?id=61579533969713</span>
+      </a>
+
+      <a href="https://instagram.com/practicularium" class="social-item ig" target="_blank">
+        <strong>📸 Instagram</strong>
+        <span>instagram.com/practicularium</span>
+      </a>
+
+      <a href="https://threads.net/@practicularium" class="social-item th" target="_blank">
+        <strong>🧵 Threads</strong>
+        <span>threads.net/@practicularium</span>
+      </a>
+
+      <a href="https://tiktok.com/@practicularium1" class="social-item tt" target="_blank">
+        <strong>🎵 TikTok</strong>
+        <span>tiktok.com/@practicularium1</span>
+      </a>
+
+      <a href="https://youtube.com/@Practicularium" class="social-item yt" target="_blank">
+        <strong>▶ YouTube</strong>
+        <span>youtube.com/@Practicularium</span>
+      </a>
+
+      <a href="https://t.me/practicularium_ua"
+        class="social-item t" target="_blank">
+       <strong>📘 Telegram</strong>
+       <span>t.me/practicularium_ua</span>
+     </a>
+    </div>
+  </div>
+
+  <!-- RIGHT -->
+  <div class="right">
+
+    <div class="section">
+      <strong>Negli ultimi anni</strong>, dialogando con professionisti della scienza,
+      dell'impresa e della creatività, ho ricevuto sempre più spesso lo stesso messaggio:
+      <strong>la conoscenza, le idee e l'esperienza devono essere condivise e discusse apertamente.</strong>
+    </div>
+
+    <div class="section">
+      È proprio lì che nascono la diffusione delle idee,
+      il confronto,
+      la critica costruttiva,
+      lo sviluppo
+      e la crescita di un'intera direzione di pensiero.
+    </div>
+
+    <div class="section">
+      Per questo motivo ho deciso
+      <strong>non solo di documentare le mie pratiche,
+      ma anche di condividerle apertamente.</strong>
+    </div>
+
+    <div class="section">
+      È così che è nato <strong>PRACTICULARIUM</strong> —
+      perché un libro rimane uno dei mezzi più affidabili
+      per trasmettere conoscenza attraverso il tempo.
+    </div>
+
+    <div class="section">
+      Oggi <strong>PRACTICULARIUM</strong> è:
+      <ul>
+        <li>il risultato di esperienze e pratiche reali</li>
+        <li>le mie riflessioni sull'essere umano, l'esistenza e la coscienza</li>
+        <li>approcci alla gestione e all'analisi delle decisioni</li>
+        <li>modelli originali sviluppati dall'autore</li>
+        <li>strumenti e metodi di applicazione pratica</li>
+      </ul>
+    </div>
+
+   <div class="section">
+      Non è <strong>una teoria</strong> e non è <strong>motivazione fine a sé stessa</strong>.
+      Non è un dogma e non è un obbligo.
+      È un <strong>prodotto pratico</strong>.
+   </div>
+
+   <div class="section">
+      Un'esperienza raccolta e documentata.
+      Raccomandazioni e strumenti
+      che hanno superato la prova della vita reale.
+   </div>
+
+    <div class="section">
+      La pubblicazione del libro in più lingue non è casuale:
+      <ul>
+        <li><strong>Ucraino</strong> — la lingua nella quale è nato il progetto e nella quale sono state formulate le idee originali.</li>
+
+        <li><strong>Inglese</strong> — la lingua internazionale che consente di condividere queste esperienze con un pubblico più ampio.</li>
+
+        <li><strong>Russo</strong> — una lingua che permette di raggiungere ulteriori lettori interessati ai temi della pratica, della gestione e dello sviluppo personale.</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      Sono inoltre previste edizioni e adattamenti
+      in <strong>italiano</strong>, polacco, tedesco,
+      francese e spagnolo.
+    </div>
+
+    <div class="button-wrap">
+      <a href="contacts.html" class="buy-button">Acquista</a>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <div class="footer-line">
+    <span>Molto spesso ci sorprendiamo nello scoprire che ciò che cercavamo era sempre stato accanto a noi.</span>
+    <span class="footer-sign">(© PRACTICULARIUM. I.S. Zaitsev)</span>
+  </div>
+</footer>
+
+</body>
+</html>
