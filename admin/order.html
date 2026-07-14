@@ -1,100 +1,140 @@
 <!DOCTYPE html>
-
 <html lang="uk">
 
 <head>
 
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+<title>PRACTICULARIUM OMS</title>
 
-    <title>PRACTICULARIUM OMS</title>
-
-    <link rel="stylesheet" href="css/admin.css">
+<link rel="stylesheet" href="../css/admin.css">
 
 </head>
 
 <body>
 
-<header>
+<div class="container">
 
-    <h1>PRACTICULARIUM OMS</h1>
+<header class="page-header">
 
-    <a href="orders.html">← До списку замовлень</a>
+<h1>PRACTICULARIUM OMS</h1>
+
+<a class="back-link" href="orders.html">
+← До списку замовлень
+</a>
 
 </header>
 
-<main>
+<div class="order-header">
 
-    <section class="order-header">
+<div>
 
-        <h2 id="orderNumber"></h2>
+<h2 id="orderNumber">
+Замовлення
+</h2>
 
-        <select id="statusSelect"></select>
+</div>
 
-    </section>
+<div>
 
-    <section class="grid">
+<select id="statusSelect">
 
-        <article class="card">
+<option>NEW</option>
+<option>CONFIRMED</option>
+<option>WAITING_PREPAYMENT</option>
+<option>PAYMENT_RECEIVED</option>
+<option>PACKING</option>
+<option>SHIPPED</option>
+<option>DELIVERED</option>
+<option>COMPLETED</option>
+<option>CANCELLED</option>
 
-            <h3>Клієнт</h3>
+</select>
 
-            <p id="customerName"></p>
-            <p id="customerPhone"></p>
-            <p id="customerEmail"></p>
+</div>
 
-        </article>
+</div>
 
-        <article class="card">
+<div class="cards">
 
-            <h3>Книга</h3>
+<section class="card">
 
-            <p id="productTitle"></p>
-            <p id="productQuantity"></p>
-            <p id="productPrice"></p>
+<h3>👤 Клієнт</h3>
 
-        </article>
+<p><strong>Ім'я</strong></p>
+<p id="customerName"></p>
 
-        <article class="card">
+<p><strong>Email</strong></p>
+<p id="customerEmail"></p>
 
-            <h3>Оплата</h3>
+<p><strong>Телефон</strong></p>
+<p id="customerPhone"></p>
 
-            <p id="paymentMethod"></p>
+</section>
 
-        </article>
+<section class="card">
 
-        <article class="card">
+<h3>📚 Замовлення</h3>
 
-            <h3>Доставка</h3>
+<p><strong>Книга</strong></p>
+<p id="productName"></p>
 
-            <p id="deliveryMethod"></p>
-            <p id="deliveryCountry"></p>
+<p><strong>Кількість</strong></p>
+<p id="quantity"></p>
 
-        </article>
+<p><strong>Ціна</strong></p>
+<p id="price"></p>
 
-    </section>
+</section>
 
-    <section class="card">
+<section class="card">
 
-        <h3>Коментар</h3>
+<h3>💳 Оплата</h3>
 
-        <p id="comment"></p>
+<p id="paymentMethod"></p>
 
-    </section>
+</section>
 
-    <section class="card">
+<section class="card">
 
-        <h3>Інформація</h3>
+<h3>🚚 Доставка</h3>
 
-        <p id="createdAt"></p>
+<p id="deliveryMethod"></p>
 
-    </section>
+<p id="deliveryCountry"></p>
 
-</main>
+<p id="deliveryCity"></p>
 
-<script src="js/order.js"></script>
+<p id="deliveryAddress"></p>
+
+</section>
+
+<section class="card">
+
+<h3>💬 Коментар</h3>
+
+<p id="comment"></p>
+
+</section>
+
+<section class="card">
+
+<h3>⚙ Системна інформація</h3>
+
+<p><strong>Створено</strong></p>
+<p id="createdAt"></p>
+
+<p><strong>Оновлено</strong></p>
+<p id="updatedAt"></p>
+
+</section>
+
+</div>
+
+</div>
+
+<script src="order.js"></script>
 
 </body>
 
