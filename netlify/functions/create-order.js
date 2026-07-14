@@ -15,6 +15,9 @@ exports.handler = async (event) => {
 
         const order = buildOrder(data);
 
+       console.log("PRODUCT OBJECT:");
+       console.log(order.product);
+
         const validationResult = validateOrder(order);
 
         if (!validationResult.valid) {
