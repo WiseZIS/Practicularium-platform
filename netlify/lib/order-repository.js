@@ -10,7 +10,7 @@ async function saveOrder(order) {
                 status: order.meta.status,
                 customer_name: `${order.customer.firstName} ${order.customer.lastName}`,
                 customer_email: order.customer.email,
-                product_name: order.product.name,
+                product_name: order.product.title,
                 data: order
             }
         ]);
