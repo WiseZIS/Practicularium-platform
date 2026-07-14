@@ -1,4 +1,5 @@
 const { supabase } = require("./supabase");
+const { getProductLabel } = require("./product-label");
 
 async function saveOrder(order) {
 
@@ -10,7 +11,7 @@ async function saveOrder(order) {
                 status: order.meta.status,
                 customer_name: `${order.customer.firstName} ${order.customer.lastName}`,
                 customer_email: order.customer.email,
-                product_name: order.product.title,
+                product_name: getProductLabel(order.product),
                 data: order
             }
         ]);
