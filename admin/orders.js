@@ -18,7 +18,15 @@ async function loadOrders() {
 
 <tr>
 
-<td>${order.order_number}</td>
+<td>
+
+    <a href="order.html?number=${order.order_number}">
+
+        ${order.order_number}
+
+    </a>
+
+</td>
 
 <td>
 

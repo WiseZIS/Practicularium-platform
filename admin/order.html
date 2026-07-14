@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+
+<html lang="uk">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>PRACTICULARIUM OMS</title>
+
+    <link rel="stylesheet" href="css/admin.css">
+
+</head>
+
+<body>
+
+<header>
+
+    <h1>PRACTICULARIUM OMS</h1>
+
+    <a href="orders.html">← До списку замовлень</a>
+
+</header>
+
+<main>
+
+    <section class="order-header">
+
+        <h2 id="orderNumber"></h2>
+
+        <select id="statusSelect"></select>
+
+    </section>
+
+    <section class="grid">
+
+        <article class="card">
+
+            <h3>Клієнт</h3>
+
+            <p id="customerName"></p>
+            <p id="customerPhone"></p>
+            <p id="customerEmail"></p>
+
+        </article>
+
+        <article class="card">
+
+            <h3>Книга</h3>
+
+            <p id="productTitle"></p>
+            <p id="productQuantity"></p>
+            <p id="productPrice"></p>
+
+        </article>
+
+        <article class="card">
+
+            <h3>Оплата</h3>
+
+            <p id="paymentMethod"></p>
+
+        </article>
+
+        <article class="card">
+
+            <h3>Доставка</h3>
+
+            <p id="deliveryMethod"></p>
+            <p id="deliveryCountry"></p>
+
+        </article>
+
+    </section>
+
+    <section class="card">
+
+        <h3>Коментар</h3>
+
+        <p id="comment"></p>
+
+    </section>
+
+    <section class="card">
+
+        <h3>Інформація</h3>
+
+        <p id="createdAt"></p>
+
+    </section>
+
+</main>
+
+<script src="js/order.js"></script>
+
+</body>
+
+</html>
