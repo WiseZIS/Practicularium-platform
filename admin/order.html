@@ -3,12 +3,14 @@
 
 <head>
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
 
-<title>PRACTICULARIUM OMS</title>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
-<link rel="stylesheet" href="../css/admin.css">
+    <title>Замовлення | PRACTICULARIUM OMS</title>
+
+    <link rel="stylesheet" href="admin.css">
 
 </head>
 
@@ -16,126 +18,532 @@
 
 <div class="container">
 
-<header class="page-header">
+    <header class="page-header">
 
-<h1>PRACTICULARIUM OMS</h1>
+        <div>
 
-<a class="back-link" href="orders.html">
-← До списку замовлень
-</a>
+            <h1 class="page-title">
+                Замовлення
+            </h1>
 
-</header>
+            <p class="page-subtitle">
+                PRACTICULARIUM Order Management System
+            </p>
 
-<div class="order-header">
+        </div>
 
-<div>
+        <a href="orders.html"
+           class="btn btn-secondary">
+            ← До списку замовлень
+        </a>
 
-<h2 id="orderNumber">
-Замовлення
-</h2>
+    </header>
 
-</div>
+    <div id="loading"
+         class="loading">
 
-<div>
+        Завантаження замовлення...
 
-<select id="statusSelect">
+    </div>
 
-<option>NEW</option>
-<option>CONFIRMED</option>
-<option>WAITING_PREPAYMENT</option>
-<option>PAYMENT_RECEIVED</option>
-<option>PACKING</option>
-<option>SHIPPED</option>
-<option>DELIVERED</option>
-<option>COMPLETED</option>
-<option>CANCELLED</option>
+    <main id="orderContent"
+          class="hidden">
 
-</select>
+        <!-- ============================================ -->
+        <!-- STATUS -->
+        <!-- ============================================ -->
 
-</div>
+        <section class="card">
 
-</div>
+            <div class="card-header">
 
-<div class="cards">
+                Статус замовлення
 
-<section class="card">
+            </div>
 
-<h3>👤 Клієнт</h3>
+            <div class="card-body">
 
-<p><strong>Ім'я</strong></p>
-<p id="customerName"></p>
+                <div class="grid grid-2">
 
-<p><strong>Email</strong></p>
-<p id="customerEmail"></p>
+                    <div class="form-group">
 
-<p><strong>Телефон</strong></p>
-<p id="customerPhone"></p>
+                        <label class="form-label">
 
-</section>
+                            Поточний статус
 
-<section class="card">
+                        </label>
 
-<h3>📚 Замовлення</h3>
+                        <span id="orderStatusBadge"
+                              class="badge badge-new">
 
-<p><strong>Книга</strong></p>
-<p id="productName"></p>
+                            NEW
 
-<p><strong>Кількість</strong></p>
-<p id="quantity"></p>
+                        </span>
 
-<p><strong>Ціна</strong></p>
-<p id="price"></p>
+                    </div>
 
-</section>
+                    <div class="form-group">
 
-<section class="card">
+                        <label
+                            for="statusSelect"
+                            class="form-label">
 
-<h3>💳 Оплата</h3>
+                            Змінити статус
 
-<p id="paymentMethod"></p>
+                        </label>
 
-</section>
+                        <select id="statusSelect"
+                                class="form-select">
 
-<section class="card">
+                            <option value="NEW">NEW</option>
+                            <option value="CONFIRMED">CONFIRMED</option>
+                            <option value="WAITING_PREPAYMENT">WAITING_PREPAYMENT</option>
+                            <option value="PAYMENT_RECEIVED">PAYMENT_RECEIVED</option>
+                            <option value="PACKING">PACKING</option>
+                            <option value="SHIPPED">SHIPPED</option>
+                            <option value="DELIVERED">DELIVERED</option>
+                            <option value="COMPLETED">COMPLETED</option>
+                            <option value="CANCELLED">CANCELLED</option>
 
-<h3>🚚 Доставка</h3>
+                        </select>
 
-<p id="deliveryMethod"></p>
+                    </div>
 
-<p id="deliveryCountry"></p>
+                </div>
 
-<p id="deliveryCity"></p>
+                <div class="form-actions">
 
-<p id="deliveryAddress"></p>
+                    <button id="saveStatus"
+                            class="btn btn-primary">
 
-</section>
+                        Зберегти статус
 
-<section class="card">
+                    </button>
 
-<h3>💬 Коментар</h3>
+                </div>
 
-<p id="comment"></p>
+            </div>
 
-</section>
+        </section>
 
-<section class="card">
+        <!-- ============================================ -->
+        <!-- CUSTOMER -->
+        <!-- ============================================ -->
 
-<h3>⚙ Системна інформація</h3>
+        <section class="card">
 
-<p><strong>Створено</strong></p>
-<p id="createdAt"></p>
+            <div class="card-header">
 
-<p><strong>Оновлено</strong></p>
-<p id="updatedAt"></p>
+                Інформація про клієнта
 
-</section>
+            </div>
 
-</div>
+            <div class="card-body">
+
+                <div class="details-list">
+
+                    <div class="detail-row">
+
+                        <div class="detail-label">
+
+                            Ім'я
+
+                        </div>
+
+                        <div id="customerName"
+                             class="detail-value">
+
+                            —
+
+                        </div>
+
+                    </div>
+
+                    <div class="detail-row">
+
+                        <div class="detail-label">
+
+                            Email
+
+                        </div>
+
+                        <div id="customerEmail"
+                             class="detail-value">
+
+                            —
+
+                        </div>
+
+                    </div>
+
+                    <div class="detail-row">
+
+                        <div class="detail-label">
+
+                            Телефон
+
+                        </div>
+
+                        <div id="customerPhone"
+                             class="detail-value">
+
+                            —
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- ============================================ -->
+        <!-- ORDER -->
+        <!-- ============================================ -->
+
+        <section class="card">
+
+            <div class="card-header">
+
+                Інформація про замовлення
+
+            </div>
+
+            <div class="card-body">
+
+                <div class="details-list">
+
+                    <div class="detail-row">
+
+                        <div class="detail-label">
+
+                            № Замовлення
+
+                        </div>
+
+                        <div id="orderNumber"
+                             class="detail-value">
+
+                            —
+
+                        </div>
+
+                    </div>
+
+                    <div class="detail-row">
+
+                        <div class="detail-label">
+
+                            Книга
+
+                        </div>
+
+                        <div id="productName"
+                             class="detail-value">
+
+                            —
+
+                        </div>
+
+                    </div>
+
+                    <div class="detail-row">
+
+                        <div class="detail-label">
+
+                            Кількість
+
+                        </div>
+
+                        <div id="quantity"
+                             class="detail-value">
+
+                            —
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+		
+		<!-- ============================================ -->
+        <!-- DELIVERY -->
+        <!-- ============================================ -->
+
+        <section class="card">
+
+            <div class="card-header">
+
+                Доставка
+
+            </div>
+
+            <div class="card-body">
+
+                <div class="details-list">
+
+                    <div class="detail-row">
+
+                        <div class="detail-label">
+
+                            Спосіб доставки
+
+                        </div>
+
+                        <div id="deliveryMethod"
+                             class="detail-value">
+
+                            —
+
+                        </div>
+
+                    </div>
+
+                    <div class="detail-row">
+
+                        <div class="detail-label">
+
+                            Країна
+
+                        </div>
+
+                        <div id="deliveryCountry"
+                             class="detail-value">
+
+                            —
+
+                        </div>
+
+                    </div>
+
+                    <div class="detail-row">
+
+                        <div class="detail-label">
+
+                            Місто
+
+                        </div>
+
+                        <div id="deliveryCity"
+                             class="detail-value">
+
+                            —
+
+                        </div>
+
+                    </div>
+
+                    <div class="detail-row">
+
+                        <div class="detail-label">
+
+                            Адреса доставки
+
+                        </div>
+
+                        <div id="deliveryAddress"
+                             class="detail-value">
+
+                            —
+
+                        </div>
+
+                    </div>
+
+                    <div class="detail-row">
+
+                        <div class="detail-label">
+
+                            Коментар
+
+                        </div>
+
+                        <div id="comment"
+                             class="detail-value">
+
+                            —
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- ============================================ -->
+        <!-- PAYMENT -->
+        <!-- ============================================ -->
+
+        <section class="card">
+
+            <div class="card-header">
+
+                Оплата
+
+            </div>
+
+            <div class="card-body">
+
+                <div class="details-list">
+
+                    <div class="detail-row">
+
+                        <div class="detail-label">
+
+                            Спосіб оплати
+
+                        </div>
+
+                        <div id="paymentMethod"
+                             class="detail-value">
+
+                            —
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- ============================================ -->
+        <!-- PRICE -->
+        <!-- ============================================ -->
+
+        <section class="card">
+
+            <div class="card-header">
+
+                Вартість
+
+            </div>
+
+            <div class="card-body">
+
+                <div class="details-list">
+
+                    <div class="detail-row">
+
+                        <div class="detail-label">
+
+                            Загальна сума
+
+                        </div>
+
+                        <div id="price"
+                             class="detail-value">
+
+                            —
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- ============================================ -->
+        <!-- SERVICE -->
+        <!-- ============================================ -->
+
+        <section class="card">
+
+            <div class="card-header">
+
+                Службова інформація
+
+            </div>
+
+            <div class="card-body">
+
+                <div class="details-list">
+
+                    <div class="detail-row">
+
+                        <div class="detail-label">
+
+                            ID замовлення
+
+                        </div>
+
+                        <div id="orderId"
+                             class="detail-value">
+
+                            —
+
+                        </div>
+
+                    </div>
+
+                    <div class="detail-row">
+
+                        <div class="detail-label">
+
+                            Дата створення
+
+                        </div>
+
+                        <div id="createdAt"
+                             class="detail-value">
+
+                            —
+
+                        </div>
+
+                    </div>
+
+                    <div class="detail-row">
+
+                        <div class="detail-label">
+
+                            Останнє оновлення
+
+                        </div>
+
+                        <div id="updatedAt"
+                             class="detail-value">
+
+                            —
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+		
+		<!-- ============================================ -->
+    <!-- ERROR -->
+    <!-- ============================================ -->
+
+    <div id="error"
+         class="alert alert-danger hidden">
+
+        Не вдалося завантажити замовлення.
+
+    </div>
 
 </div>
 
 <script src="order.js"></script>
 
 </body>
-
 </html>

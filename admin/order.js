@@ -8,6 +8,10 @@ async function loadOrder() {
 
         const orderNumber = params.get("number");
 
+        console.log("URL:", window.location.href);
+        console.log("Search:", window.location.search);
+        console.log("Order number:", orderNumber);
+
         if (!orderNumber) {
 
             alert("Не вказано номер замовлення.");
