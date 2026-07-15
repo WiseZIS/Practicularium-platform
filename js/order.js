@@ -21,7 +21,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const data = Object.fromEntries(formData.entries());
 
-        console.log(data);
+        console.log("FORM DATA:");
+        console.log(JSON.stringify(data, null, 2));
 
         try {
 
