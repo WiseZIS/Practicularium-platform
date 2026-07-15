@@ -24,8 +24,12 @@ async function loadOrder() {
             `/.netlify/functions/get-order?number=${orderNumber}`
         );
 
-        const result = await response.json();
+        console.log(response.status);
+        console.log(response);
 
+        const result = await response.json();
+        console.log(result);
+		
         if (!result.success) {
 
             alert("Замовлення не знайдено.");
