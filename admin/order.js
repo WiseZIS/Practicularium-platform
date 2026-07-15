@@ -42,8 +42,22 @@ async function loadOrder() {
 
         const data = order.data || {};
 
+        console.log(order);
+        console.log(data);
+        console.log("orderNumber");
+		
         document.getElementById("orderNumber").textContent =
             order.order_number;
+
+        console.log("customerName");
+        
+		document.getElementById("customerName").textContent =
+            order.customer_name || "";
+
+        console.log("customerEmail");
+        
+		document.getElementById("customerEmail").textContent =
+            order.customer_email || "";
 
         document.getElementById("customerName").textContent =
             order.customer_name || "";
