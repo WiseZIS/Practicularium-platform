@@ -23,21 +23,25 @@ document.addEventListener("DOMContentLoaded", () => {
     // Поля доставки
     // ==========================
 
-    const city = document.querySelector('[name="city"]');
-    const branch = document.querySelector('[name="np_branch"]');
+    const novaCity = document.querySelector("#novaPoshtaFields [name='city']");
+    const ukrCity = document.querySelector("#ukrPoshtaFields [name='city']");
 
-    const index = document.querySelector('[name="ukrpost_index"]');
-    const street = document.querySelector('[name="ukrpost_street"]');
-    const house = document.querySelector('[name="ukrpost_house"]');
-    const apartment = document.querySelector('[name="ukrpost_apartment"]');
+    const branch = document.querySelector("[name='np_branch']");
+
+    const index = document.querySelector("[name='ukrpost_index']");
+    const street = document.querySelector("[name='ukrpost_street']");
+    const house = document.querySelector("[name='ukrpost_house']");
+    const apartment = document.querySelector("[name='ukrpost_apartment']");
 
     // ==========================
-    // Очистка полей доставки
+    // Очистка полей
     // ==========================
 
     function clearDeliveryFields() {
 
-        city.value = "";
+        novaCity.value = "";
+        ukrCity.value = "";
+
         branch.value = "";
 
         index.value = "";
@@ -53,7 +57,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function resetRequiredFields() {
 
-        city.required = false;
+        novaCity.required = false;
+        ukrCity.required = false;
+
         branch.required = false;
 
         index.required = false;
@@ -62,8 +68,8 @@ document.addEventListener("DOMContentLoaded", () => {
         apartment.required = false;
 
     }
-
-    // ==========================
+	
+	// ==========================
     // Страна / Валюта
     // ==========================
 
@@ -94,7 +100,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // ==========================
-    // Новая Почта
+    // Нова Пошта
     // ==========================
 
     function showNovaPoshta() {
@@ -104,6 +110,8 @@ document.addEventListener("DOMContentLoaded", () => {
         novaFields.style.display = "block";
         ukrFields.style.display = "none";
 
+        ukrCity.value = "";
+
         index.value = "";
         street.value = "";
         house.value = "";
@@ -111,7 +119,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         resetRequiredFields();
 
-        city.required = true;
+        novaCity.required = true;
         branch.required = true;
 
         showCountryCurrency();
@@ -119,7 +127,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // ==========================
-    // Укрпочта
+    // Укрпошта
     // ==========================
 
     function showUkrPoshta() {
@@ -129,11 +137,12 @@ document.addEventListener("DOMContentLoaded", () => {
         novaFields.style.display = "none";
         ukrFields.style.display = "block";
 
-        city.value = "";
+        novaCity.value = "";
         branch.value = "";
 
         resetRequiredFields();
 
+        ukrCity.required = true;
         index.required = true;
         street.required = true;
         house.required = true;
@@ -159,8 +168,8 @@ document.addEventListener("DOMContentLoaded", () => {
         setCountryCurrency(countryCode, currencyCode);
 
     }
-
-    // ==========================
+	
+	// ==========================
     // Registry сценариев
     // ==========================
 
@@ -203,6 +212,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // ==========================
 
     showCountryCurrency();
+
     deliverySection.style.display = "none";
 
     novaFields.style.display = "none";
@@ -221,6 +231,7 @@ document.addEventListener("DOMContentLoaded", () => {
             handler();
 
         }
+
         else {
 
             showCountryCurrency();
@@ -228,6 +239,7 @@ document.addEventListener("DOMContentLoaded", () => {
             deliverySection.style.display = "none";
 
             clearDeliveryFields();
+
             resetRequiredFields();
 
         }
