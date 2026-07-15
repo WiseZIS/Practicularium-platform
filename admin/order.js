@@ -8,10 +8,6 @@ async function loadOrder() {
 
         const orderNumber = params.get("number");
 
-        console.log("URL:", window.location.href);
-        console.log("Search:", window.location.search);
-        console.log("Order number:", orderNumber);
-
         if (!orderNumber) {
 
             alert("Не вказано номер замовлення.");
@@ -24,12 +20,8 @@ async function loadOrder() {
             `/.netlify/functions/get-order?number=${orderNumber}`
         );
 
-        console.log(response.status);
-        console.log(response);
-
         const result = await response.json();
-        console.log(result);
-		
+
         if (!result.success) {
 
             alert("Замовлення не знайдено.");
@@ -42,22 +34,8 @@ async function loadOrder() {
 
         const data = order.data || {};
 
-        console.log(order);
-        console.log(data);
-        console.log("orderNumber");
-		
         document.getElementById("orderNumber").textContent =
             order.order_number;
-
-        console.log("customerName");
-        
-		document.getElementById("customerName").textContent =
-            order.customer_name || "";
-
-        console.log("customerEmail");
-        
-		document.getElementById("customerEmail").textContent =
-            order.customer_email || "";
 
         document.getElementById("customerName").textContent =
             order.customer_name || "";
@@ -104,13 +82,19 @@ async function loadOrder() {
         document.getElementById("statusSelect").value =
             order.status;
 
+        document.getElementById("loading").classList.add("hidden");
+
+        document.getElementById("orderContent").classList.remove("hidden");
+
     }
 
     catch (error) {
 
         console.error(error);
 
-        alert("Не вдалося завантажити замовлення.");
+        document.getElementById("loading").classList.add("hidden");
+
+        document.getElementById("error").classList.remove("hidden");
 
     }
 
