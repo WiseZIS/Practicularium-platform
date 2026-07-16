@@ -1,3 +1,4 @@
-[build]
-
-functions = "netlify/functions"
+"scripts": {
+    "test": "node tests/delivery.test.js",
+    "test:nova": "node tests/nova-poshta.test.js",
+    "dev": "netlify dev"

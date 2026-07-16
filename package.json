@@ -2,14 +2,13 @@
   "name": "practicularium-platform-v2",
   "version": "2.0.0",
   "private": true,
-
   "scripts": {
     "test": "node tests/delivery.test.js",
     "dev": "netlify dev"
   },
-
   "dependencies": {
     "@supabase/supabase-js": "^2.110.0",
+    "dotenv": "^17.4.2",
     "nodemailer": "^9.0.1"
   }
 }
