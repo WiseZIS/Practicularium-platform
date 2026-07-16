@@ -58,7 +58,8 @@ async function saveOrderStatus(orderNumber, status) {
     const { error } = await supabase
         .from("orders")
         .update({
-            status
+            status,
+            updated_at: new Date().toISOString()
         })
         .eq("order_number", orderNumber);
 

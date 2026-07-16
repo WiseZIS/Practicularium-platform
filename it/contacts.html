@@ -249,6 +249,15 @@ button{
   border-radius:4px;
 }
 
+/* FORM HINT */
+.form-hint{
+  margin-top:8px;
+  margin-bottom:18px;
+  font-size:0.9rem;
+  color:#6b7280;
+  line-height:1.5;
+}
+
 /* CONTACT ICONS */
 .after-form{
   margin-top:30px;
@@ -576,10 +585,14 @@ footer{
         <option value="ukrposhta">Uсrposhta</option>
         <option value="pickup">Ritiro presso l'editore</option>
         <option value="genoa_personal">Consegna di persona (Genova)</option>
-        <option value="italy_post">Spedizione postale in Italia</option>
+        <option value="italy_post">Poste Italiane</option>
       </select>
-
      
+      <p class="form-hint">
+         ℹ️ Per i servizi di spedizione, l'elenco dei Paesi disponibili, delle modalità di consegna, dei punti di ritiro, degli armadietti automatici e dei servizi viene caricato automaticamente dopo la selezione del corriere..
+      </p>
+     
+	 
     <div id="countrySection">
     <label>Paese</label>
     <select name="country" id="country" required>
