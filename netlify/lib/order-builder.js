@@ -21,9 +21,13 @@ function buildOrder(data) {
 
         destination: {
 
-            city: data.city,
+            city: data.city || data.ukrpost_city,
 
-            warehouse: data.np_branch
+            cityRef: data.cityRef,
+
+            warehouse: data.warehouse,
+
+            warehouseRef: data.warehouseRef
 
         }
 
@@ -76,9 +80,13 @@ function buildOrder(data) {
 
             method: data.delivery,
 
-            city: data.city,
+            city: data.city || data.ukrpost_city,
 
-            branch: data.np_branch,
+            cityRef: data.cityRef,
+
+            warehouse: data.warehouse,
+
+            warehouseRef: data.warehouseRef,
 
             index: data.ukrpost_index,
 

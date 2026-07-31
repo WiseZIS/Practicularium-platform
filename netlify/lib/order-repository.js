@@ -69,11 +69,213 @@ async function saveOrderStatus(orderNumber, status) {
 
 }
 
+/**
+ * ============================================================
+ * Save Fiscal Result
+ * ============================================================
+ */
+
+async function saveFiscalResult(
+
+    orderNumber,
+
+    fiscalResult
+
+) {
+
+    const order =
+
+        await getOrderByNumber(
+
+            orderNumber
+
+        );
+
+    const orderData =
+
+        order.data || {};
+		
+		console.log();
+        console.log("SAVE FISCAL RESULT");
+        console.log(orderNumber);
+        console.log(fiscalResult);
+
+    orderData.fiscal = {
+
+        provider:
+
+            fiscalResult.provider || "checkbox",
+
+        receiptId:
+
+            fiscalResult.receiptId || null,
+
+        receiptNumber:
+
+            fiscalResult.result?.receiptNumber || null,
+
+        fiscalNumber:
+
+            fiscalResult.result?.fiscalNumber || null,
+
+        receiptPath:
+
+            fiscalResult.receiptPath || null,
+
+        createdAt:
+
+            fiscalResult.result?.createdAt ||
+
+            new Date().toISOString()
+
+    };
+
+        console.log();
+        console.log("ORDER DATA TO SAVE:");
+        console.log(JSON.stringify(orderData, null, 4));
+
+    const { error } = await supabase
+
+        .from("orders")
+
+        .update({
+
+            data:
+
+                orderData,
+
+            updated_at:
+
+                new Date().toISOString()
+
+        })
+
+        .eq(
+
+            "order_number",
+
+            orderNumber
+
+        );
+
+    if (error) {
+
+        throw error;
+
+    }
+
+}
+
+/**
+ * ============================================================
+ * Save Return Result
+ * ============================================================
+ */
+
+async function saveReturnResult(
+
+    orderNumber,
+
+    returnResult
+
+) {
+
+    const order =
+
+        await getOrderByNumber(
+
+            orderNumber
+
+        );
+
+    const orderData =
+
+        order.data || {};
+
+    orderData.return = {
+
+        provider:
+
+            returnResult.provider || "checkbox",
+
+        receiptId:
+
+            returnResult.receiptId || null,
+
+        receiptNumber:
+
+            returnResult.result?.receiptNumber || null,
+
+        fiscalNumber:
+
+            returnResult.result?.fiscalNumber || null,
+
+        receiptPath:
+
+            returnResult.receiptPath || null,
+
+        actPath:
+
+            returnResult.actPath || null,
+
+        reason:
+
+            returnResult.reason ||
+
+            "TEST_RETURN",
+
+        createdAt:
+
+            returnResult.result?.createdAt ||
+
+            new Date().toISOString()
+
+    };
+
+    const { error } = await supabase
+
+        .from("orders")
+
+        .update({
+
+            data:
+
+                orderData,
+
+            updated_at:
+
+                new Date().toISOString()
+
+        })
+
+        .eq(
+
+            "order_number",
+
+            orderNumber
+
+        );
+
+    if (error) {
+
+        throw error;
+
+    }
+
+}
+
 module.exports = {
 
     saveOrder,
+
     getOrderByNumber,
+
     getOrders,
-    saveOrderStatus
+
+    saveOrderStatus,
+
+    saveFiscalResult,
+
+    saveReturnResult
 
 };

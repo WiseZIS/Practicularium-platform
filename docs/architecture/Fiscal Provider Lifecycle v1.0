@@ -1,0 +1,666 @@
+# ============================================================
+# PRACTICULARIUM Platform 2.0
+# Fiscal Provider Lifecycle
+# Version 2.0
+# ============================================================
+
+## Purpose
+
+This document describes the complete lifecycle of Fiscal Provider
+integration inside PRACTICULARIUM Platform.
+
+It defines the responsibilities of OMS,
+Fiscal Engine,
+Fiscal Provider,
+and external Fiscal API.
+
+This document is implementation-independent.
+
+------------------------------------------------------------
+
+## Lifecycle
+
+Customer
+
+↓
+
+Order Form
+
+↓
+
+OMS
+
+↓
+
+Fiscal Service
+
+↓
+
+Fiscal Builder
+
+↓
+
+Internal Fiscal Request
+
+↓
+
+Fiscal Provider
+
+↓
+
+Authentication
+
+↓
+
+Token Management
+
+↓
+
+Shift Management
+
+↓
+
+Receipt Creation
+
+↓
+
+Provider Response Processing
+
+↓
+
+Fiscal Result
+
+↓
+
+OMS Update
+
+↓
+
+Customer Notification
+
+------------------------------------------------------------
+
+## Provider Components
+
+### Authentication
+
+Authentication belongs only to Provider Client.
+
+OMS,
+Fiscal Service,
+Fiscal Builder,
+Fiscal Provider,
+Mapper
+
+must never authenticate directly.
+
+Authentication is performed only when
+Provider requires a new Access Token.
+
+------------------------------------------------------------
+
+### Token Management
+
+Token Management belongs only
+to Provider Client.
+
+Provider reuses previously received
+Access Token.
+
+Provider performs re-authentication
+only after receiving
+
+"Invalid Access Token"
+
+from external Fiscal API.
+
+Provider must never authenticate
+before every request.
+
+------------------------------------------------------------
+
+### Shift Management
+
+Shift Management belongs only
+to Provider Client.
+
+Before opening a Shift
+
+Provider checks
+current Shift status.
+
+If Shift is OPENED
+
+Provider continues
+Receipt Creation.
+
+If Shift is CLOSED
+
+Provider opens
+a new Shift.
+
+After opening Shift
+
+Provider verifies
+current Shift status.
+
+If Shift opening fails
+
+Provider analyzes
+diagnostic information
+returned by Fiscal API
+
+before returning
+Provider Error.
+
+------------------------------------------------------------
+
+### Receipt Creation
+
+Provider Client
+
+↓
+
+Authentication
+
+↓
+
+Token Management
+
+↓
+
+Shift Management
+
+↓
+
+Create Fiscal Receipt
+
+↓
+
+Receive Provider Response
+
+↓
+
+Return Unified Fiscal Result
+
+------------------------------------------------------------
+
+## Responsibilities
+
+OMS
+
+• controls business process
+
+• determines when fiscalization is required
+
+• stores fiscal information
+
+Fiscal Builder
+
+• creates Internal Fiscal Request
+
+• does not communicate with Provider
+
+Fiscal Provider
+
+• receives Internal Fiscal Request
+
+• invokes Mapper
+
+• invokes Client
+
+• manages Provider Lifecycle
+
+• returns unified Provider Result
+
+Mapper
+
+• converts Internal Fiscal Request
+
+• converts Provider Response
+
+• contains no HTTP logic
+
+Client
+
+• communicates with external API
+
+• authenticates
+
+• manages Access Token
+
+• manages Shift Lifecycle
+
+• performs HTTP requests
+
+• returns raw Provider Response
+
+------------------------------------------------------------
+
+## Saving Result
+
+Fiscal Service stores:
+
+• fiscal status
+
+• fiscal number
+
+• receipt number
+
+• receipt url
+
+• fiscal timestamp
+
+------------------------------------------------------------
+
+## Customer Notification
+
+Customer notification is not part of Provider.
+
+Notification belongs to Email Service.
+
+Provider may return
+
+receipt url
+
+or
+
+pdf url
+
+for Email Service.
+
+------------------------------------------------------------
+
+## Architecture Principles
+
+Provider must never modify OMS data.
+
+Mapper must never execute HTTP requests.
+
+Client must never contain business logic.
+
+OMS must never depend on external API structure.
+
+Internal Fiscal Request is the only contract
+between OMS and Fiscal Provider.
+
+Provider encapsulates the complete Provider Lifecycle.
+
+Business Logic must never depend on:
+
+• authentication;
+
+• access token lifecycle;
+
+• shift lifecycle;
+
+• provider-specific API operations.
+
+Provider implementation details must remain
+inside Provider Client.
+
+------------------------------------------------------------
+
+End of document.
+
+
+
+
+
+# ============================================================
+# PRACTICULARIUM Platform 2.0
+# Життєвий цикл Fiscal Provider
+# Версія 2.0
+# ============================================================
+
+## Призначення
+
+Цей документ описує повний життєвий цикл інтеграції
+Fiscal Provider у PRACTICULARIUM Platform.
+
+Документ визначає зони відповідальності OMS,
+Fiscal Engine,
+Fiscal Provider
+та зовнішнього Fiscal API.
+
+Документ не залежить
+від конкретної реалізації Provider.
+
+------------------------------------------------------------
+
+## Життєвий цикл
+
+Покупець
+
+↓
+
+Форма замовлення
+
+↓
+
+OMS
+
+↓
+
+Fiscal Service
+
+↓
+
+Fiscal Builder
+
+↓
+
+Internal Fiscal Request
+
+↓
+
+Fiscal Provider
+
+↓
+
+Автентифікація
+
+↓
+
+Керування Access Token
+
+↓
+
+Керування зміною
+
+↓
+
+Створення фіскального чека
+
+↓
+
+Обробка відповіді Provider
+
+↓
+
+Fiscal Result
+
+↓
+
+Оновлення OMS
+
+↓
+
+Повідомлення покупця
+
+------------------------------------------------------------
+
+## Компоненти Provider
+
+### Автентифікація
+
+Автентифікація належить
+виключно Provider Client.
+
+OMS,
+Fiscal Service,
+Fiscal Builder,
+Fiscal Provider,
+Mapper
+
+ніколи не повинні
+виконувати автентифікацію
+безпосередньо.
+
+Автентифікація виконується
+лише тоді,
+коли Provider потребує
+новий Access Token.
+
+------------------------------------------------------------
+
+### Керування Access Token
+
+Керування Access Token
+належить виключно
+Provider Client.
+
+Provider повторно використовує
+раніше отриманий
+Access Token.
+
+Повторна автентифікація
+виконується лише після отримання
+
+"Invalid Access Token"
+
+від зовнішнього Fiscal API.
+
+Provider ніколи
+не повинен проходити
+автентифікацію
+перед кожним запитом.
+
+------------------------------------------------------------
+
+### Керування зміною
+
+Керування зміною
+належить виключно
+Provider Client.
+
+Перед відкриттям зміни
+
+Provider перевіряє
+поточний статус зміни.
+
+Якщо зміна має статус OPENED
+
+Provider переходить
+до створення
+фіскального чека.
+
+Якщо зміна має статус CLOSED
+
+Provider відкриває
+нову зміну.
+
+Після відкриття зміни
+
+Provider повторно перевіряє
+її поточний статус.
+
+Якщо відкрити зміну
+не вдалося
+
+Provider аналізує
+діагностичну інформацію,
+отриману від Fiscal API,
+
+після чого повертає
+Provider Error.
+
+------------------------------------------------------------
+
+### Створення фіскального чека
+
+Provider Client
+
+↓
+
+Автентифікація
+
+↓
+
+Керування Access Token
+
+↓
+
+Керування зміною
+
+↓
+
+Створення фіскального чека
+
+↓
+
+Отримання відповіді Provider
+
+↓
+
+Повернення
+уніфікованого Fiscal Result
+
+------------------------------------------------------------
+
+### Обробка відповіді Provider
+
+Provider аналізує
+необроблену відповідь
+Provider.
+
+Provider перетворює
+відповідь Provider
+
+в уніфікований
+Provider Result.
+
+Бізнес-логіка Platform
+
+ніколи не повинна
+залежати від структури
+відповіді Provider.
+
+------------------------------------------------------------
+
+## Зони відповідальності
+
+OMS
+
+• керує бізнес-процесом
+
+• визначає момент необхідності фіскалізації
+
+• зберігає інформацію про фіскалізацію
+
+Fiscal Builder
+
+• формує Internal Fiscal Request
+
+• не взаємодіє із Provider
+
+Fiscal Provider
+
+• отримує Internal Fiscal Request
+
+• викликає Mapper
+
+• викликає Client
+
+• керує життєвим циклом Provider
+
+• повертає уніфікований Provider Result
+
+Mapper
+
+• перетворює Internal Fiscal Request
+
+• перетворює відповідь Provider
+
+• не містить HTTP-логіки
+
+Client
+
+• взаємодіє із зовнішнім API
+
+• виконує автентифікацію
+
+• керує Access Token
+
+• керує життєвим циклом зміни
+
+• виконує HTTP-запити
+
+• повертає необроблену відповідь Provider
+
+------------------------------------------------------------
+
+## Збереження результату
+
+Fiscal Service зберігає:
+
+• статус фіскалізації
+
+• фіскальний номер
+
+• номер чека
+
+• посилання на чек
+
+• дату та час фіскалізації
+
+------------------------------------------------------------
+
+## Повідомлення покупця
+
+Повідомлення покупця
+не є відповідальністю Provider.
+
+Відправлення повідомлень
+належить Email Service.
+
+Provider може повертати
+
+посилання на чек
+
+або
+
+посилання на PDF-документ
+
+для подальшого використання
+Email Service.
+
+------------------------------------------------------------
+
+## Архітектурні принципи
+
+Provider ніколи
+не повинен змінювати
+дані OMS.
+
+Mapper ніколи
+не повинен виконувати
+HTTP-запити.
+
+Client ніколи
+не повинен містити
+бізнес-логіку.
+
+OMS ніколи
+не повинен залежати
+від структури
+зовнішнього API.
+
+Internal Fiscal Request
+є єдиним контрактом
+між OMS
+та Fiscal Provider.
+
+Provider повністю інкапсулює
+власний життєвий цикл.
+
+Бізнес-логіка
+ніколи не повинна
+залежати від:
+
+• автентифікації;
+
+• життєвого циклу Access Token;
+
+• життєвого циклу зміни;
+
+• специфічних операцій
+  зовнішнього Provider API.
+
+Усі особливості реалізації
+повинні залишатися
+всередині Provider Client.
+
+------------------------------------------------------------
+
+Кінець документа.

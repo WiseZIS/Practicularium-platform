@@ -30,11 +30,16 @@ function createOwnerMessage(order) {
 
     if (order.delivery.method === "nova_poshta") {
 
-        addressBlock = `Відділення
+        addressBlock = `Місто
 
-${order.delivery.branch}`;
+${order.delivery.city}
 
-    } else if (order.delivery.method === "ukrposhta") {
+Точка отримання
+
+${order.delivery.warehouse}`;
+
+    }
+    else if (order.delivery.method === "ukrposhta") {
 
         addressBlock = `Індекс
 

@@ -24,9 +24,9 @@ document.addEventListener("DOMContentLoaded", () => {
     // ==========================
 
     const novaCity = document.querySelector("#novaPoshtaFields [name='city']");
-    const ukrCity = document.querySelector("#ukrPoshtaFields [name='city']");
+    const ukrCity = document.querySelector("#ukrPoshtaFields [name='ukrpost_city']");
 
-    const branch = document.querySelector("[name='np_branch']");
+    const warehouse = document.getElementById("warehouse");
 
     const index = document.querySelector("[name='ukrpost_index']");
     const street = document.querySelector("[name='ukrpost_street']");
@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
         novaCity.value = "";
         ukrCity.value = "";
 
-        branch.value = "";
+        warehouse.value = "";
 
         index.value = "";
         street.value = "";
@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", () => {
         novaCity.required = false;
         ukrCity.required = false;
 
-        branch.required = false;
+        warehouse.required = false;
 
         index.required = false;
         street.required = false;
@@ -68,8 +68,8 @@ document.addEventListener("DOMContentLoaded", () => {
         apartment.required = false;
 
     }
-	
-	// ==========================
+
+    // ==========================
     // Страна / Валюта
     // ==========================
 
@@ -120,7 +120,7 @@ document.addEventListener("DOMContentLoaded", () => {
         resetRequiredFields();
 
         novaCity.required = true;
-        branch.required = true;
+        warehouse.required = true;
 
         showCountryCurrency();
 
@@ -138,7 +138,7 @@ document.addEventListener("DOMContentLoaded", () => {
         ukrFields.style.display = "block";
 
         novaCity.value = "";
-        branch.value = "";
+        warehouse.value = "";
 
         resetRequiredFields();
 
@@ -168,8 +168,8 @@ document.addEventListener("DOMContentLoaded", () => {
         setCountryCurrency(countryCode, currencyCode);
 
     }
-	
-	// ==========================
+
+    // ==========================
     // Registry сценариев
     // ==========================
 

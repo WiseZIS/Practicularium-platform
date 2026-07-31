@@ -1,0 +1,120 @@
+# ============================================================
+# PRACTICULARIUM Platform 2.0
+# Checkbox Client Specification
+# Version 1.0
+# ============================================================
+
+## Purpose
+
+This document defines the public interface of Checkbox Client.
+
+Checkbox Client encapsulates all communication with Checkbox API.
+
+Provider must never interact with Checkbox API directly.
+
+------------------------------------------------------------
+
+## Public Interface
+
+Checkbox Client exposes only one public method:
+
+createReceipt(checkboxRequest)
+
+------------------------------------------------------------
+
+## Internal Responsibilities
+
+Checkbox Client internally performs:
+
+• authentication
+
+• access token management
+
+• cashier session management
+
+• active shift verification
+
+• shift opening (if required)
+
+• receipt creation
+
+• response processing
+
+------------------------------------------------------------
+
+## Design Principles
+
+Provider must never manage authentication.
+
+Provider must never manage shifts.
+
+Provider must never execute HTTP requests.
+
+Provider only prepares request
+and delegates execution to Client.
+
+------------------------------------------------------------
+
+End of document.
+
+
+
+# ============================================================
+# PRACTICULARIUM Platform 2.0
+# Специфікація Checkbox Client
+# Версія 1.0
+# ============================================================
+
+## Призначення
+
+Документ визначає публічний інтерфейс Checkbox Client.
+
+Checkbox Client інкапсулює всю взаємодію
+із Checkbox API.
+
+Provider ніколи не взаємодіє із Checkbox API безпосередньо.
+
+------------------------------------------------------------
+
+## Публічний інтерфейс
+
+Checkbox Client надає лише один публічний метод:
+
+createReceipt(checkboxRequest)
+
+------------------------------------------------------------
+
+## Внутрішні обов'язки
+
+Checkbox Client самостійно виконує:
+
+• автентифікацію
+
+• керування токеном доступу
+
+• керування сесією касира
+
+• перевірку активної зміни
+
+• відкриття зміни (за необхідності)
+
+• створення фіскального чека
+
+• обробку відповіді API
+
+------------------------------------------------------------
+
+## Принципи проєктування
+
+Provider ніколи не керує автентифікацією.
+
+Provider ніколи не керує змінами.
+
+Provider ніколи не виконує HTTP-запити.
+
+Provider лише формує запит
+та делегує його виконання Client.
+
+------------------------------------------------------------
+
+Кінець документа.

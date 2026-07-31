@@ -1,0 +1,260 @@
+# ============================================================
+# PRACTICULARIUM Platform 2.0
+# Checkbox Client Algorithm
+# Version 1.0
+# ============================================================
+
+## Purpose
+
+This document describes the execution algorithm
+of Checkbox Client.
+
+The algorithm is implementation-independent
+and defines the sequence of operations
+required to create a fiscal receipt.
+
+------------------------------------------------------------
+
+## Main Algorithm
+
+createReceipt(checkboxRequest)
+
+↓
+
+Check Authentication
+
+↓
+
+If authentication is missing
+
+↓
+
+Authenticate Cashier
+
+↓
+
+Receive Access Token
+
+↓
+
+Check Active Shift
+
+↓
+
+If no active shift exists
+
+↓
+
+Open Shift
+
+↓
+
+Send Fiscal Receipt Request
+
+↓
+
+Receive Provider Response
+
+↓
+
+Validate Response
+
+↓
+
+Convert to Provider Result
+
+↓
+
+Return Provider Result
+
+------------------------------------------------------------
+
+## Error Handling
+
+If authentication fails
+
+↓
+
+Return Authentication Error
+
+If shift opening fails
+
+↓
+
+Return Shift Error
+
+If receipt creation fails
+
+↓
+
+Return Receipt Error
+
+Provider Result must always be returned
+using the unified response format.
+
+------------------------------------------------------------
+
+## Session Management
+
+Client should reuse
+an existing authenticated session.
+
+Client should reuse
+an active shift.
+
+Authentication must not be repeated
+for every receipt.
+
+Shift opening must not be repeated
+while an active shift exists.
+
+------------------------------------------------------------
+
+## Design Principles
+
+Client controls its own lifecycle.
+
+Provider does not manage sessions.
+
+Provider does not manage authentication.
+
+Provider only delegates receipt creation.
+
+OMS is completely isolated
+from Checkbox API lifecycle.
+
+------------------------------------------------------------
+
+End of document.
+
+
+
+
+# ============================================================
+# PRACTICULARIUM Platform 2.0
+# Алгоритм роботи Checkbox Client
+# Версія 1.0
+# ============================================================
+
+## Призначення
+
+Документ описує алгоритм роботи
+Checkbox Client.
+
+Алгоритм не залежить від конкретної реалізації
+та визначає послідовність операцій,
+необхідних для створення фіскального чека.
+
+------------------------------------------------------------
+
+## Основний алгоритм
+
+createReceipt(checkboxRequest)
+
+↓
+
+Перевірка автентифікації
+
+↓
+
+Якщо автентифікація відсутня
+
+↓
+
+Автентифікація касира
+
+↓
+
+Отримання токена доступу
+
+↓
+
+Перевірка активної зміни
+
+↓
+
+Якщо активної зміни немає
+
+↓
+
+Відкриття зміни
+
+↓
+
+Надсилання запиту на створення чека
+
+↓
+
+Отримання відповіді Provider
+
+↓
+
+Перевірка відповіді
+
+↓
+
+Перетворення у Provider Result
+
+↓
+
+Повернення Provider Result
+
+------------------------------------------------------------
+
+## Обробка помилок
+
+Якщо автентифікація не вдалася
+
+↓
+
+Повернути помилку автентифікації
+
+Якщо відкриття зміни не вдалося
+
+↓
+
+Повернути помилку зміни
+
+Якщо створення чека не вдалося
+
+↓
+
+Повернути помилку створення чека
+
+Provider Result завжди повинен
+повертатися у єдиному форматі.
+
+------------------------------------------------------------
+
+## Керування сесією
+
+Client повинен повторно використовувати
+існуючу автентифіковану сесію.
+
+Client повинен повторно використовувати
+активну зміну.
+
+Автентифікація не повинна виконуватися
+для кожного чека окремо.
+
+Відкриття зміни не повинно повторюватися,
+поки існує активна зміна.
+
+------------------------------------------------------------
+
+## Принципи проєктування
+
+Client самостійно керує власним життєвим циклом.
+
+Provider не керує сесіями.
+
+Provider не керує автентифікацією.
+
+Provider лише делегує створення чека.
+
+OMS повністю ізольований
+від життєвого циклу Checkbox API.
+
+------------------------------------------------------------
+
+Кінець документа.

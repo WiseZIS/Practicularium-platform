@@ -30,10 +30,14 @@ function createCustomerMessage(order) {
 
     if (order.delivery.method === "nova_poshta") {
 
-        addressBlock = `Відділення:
-${order.delivery.branch}`;
+        addressBlock = `Місто:
+${order.delivery.city}
 
-    } else if (order.delivery.method === "ukrposhta") {
+Точка отримання:
+${order.delivery.warehouse}`;
+
+    }
+    else if (order.delivery.method === "ukrposhta") {
 
         addressBlock = `Індекс:
 ${order.delivery.index}
@@ -58,7 +62,8 @@ ${order.delivery.apartment}`
         paymentInfo =
 `Після надходження оплати Ваше замовлення буде підготовлене до відправки.`;
 
-    } else {
+    }
+    else {
 
         paymentInfo =
 `Перед відправкою необхідно здійснити передоплату вартості доставки.

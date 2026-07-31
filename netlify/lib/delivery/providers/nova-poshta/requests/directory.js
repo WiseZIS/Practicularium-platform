@@ -24,8 +24,33 @@ async function getCities(findByString = "") {
 
 }
 
+/**
+ * Отримати список відділень.
+ *
+ * @param {string} cityRef
+ * @returns {Promise<Object>}
+ */
+async function getWarehouses(cityRef) {
+
+    return post({
+
+        modelName: "Address",
+
+        calledMethod: "getWarehouses",
+
+        methodProperties: {
+
+            CityRef: cityRef
+
+        }
+
+    });
+
+}
+
 module.exports = {
 
-    getCities
+    getCities,
+    getWarehouses
 
 };

@@ -633,20 +633,56 @@ footer{
 	<h4 class="section-title">Дані для доставки</h4>
     
 	<div id="novaPoshtaFields">
-    <input
-        type="text"
-        name="city"
-        placeholder="Місто">
-    <input
-        type="text"
-        name="np_branch"
-        placeholder="Номер відділення Нової Пошти">
+
+    <div class="autocomplete">
+
+        <input
+            type="text"
+            id="city"
+            name="city"
+            autocomplete="off"
+            placeholder="Місто">
+
+        <input
+            type="hidden"
+            id="cityRef"
+            name="cityRef">
+
+        <div
+            id="citySuggestions"
+            class="autocomplete-list">
+        </div>
+
     </div>
+
+    <div class="autocomplete">
+
+        <input
+            type="text"
+            id="warehouse"
+            name="warehouse"
+            autocomplete="off"
+            placeholder="Точка отримання Нової Пошти">
+
+        <input
+            type="hidden"
+            id="warehouseRef"
+            name="warehouseRef">
+
+        <div
+            id="warehouseSuggestions"
+            class="autocomplete-list">
+        </div>
+
+    </div>
+
+</div>
+	
     <div id="ukrPoshtaFields">
     <input
-        type="text"
-        name="city"
-        placeholder="Місто">
+         type="text"
+         name="ukrpost_city"
+         placeholder="Місто">
 	<input
         type="text"
         name="ukrpost_index"
@@ -756,8 +792,9 @@ footer{
   </div>
 </footer>
 
-   <script src="../js/delivery-ui.js"></script>
-   <script src="../js/order.js"></script>
+  <script src="../js/delivery-ui.js"></script>
+  <script src="../js/nova-poshta-ui.js"></script>
+  <script src="../js/order.js"></script>
 
 </body>
 </html>

@@ -17,6 +17,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
         submitButton.textContent = "Надсилання...";
 
+        console.log("CITY INPUT VALUE:", document.getElementById("city").value);
+		
         const formData = new FormData(form);
 
         const data = Object.fromEntries(formData.entries());

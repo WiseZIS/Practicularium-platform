@@ -1,0 +1,417 @@
+# PRACTICULARIUM Platform 2.0
+
+# Fiscal Request Specification v1.0
+
+---
+
+## Document Information
+
+Document: Fiscal Request Specification
+
+Version: 1.0
+
+Status: Approved
+
+Module: Fiscal Engine
+
+Applies to: PRACTICULARIUM Platform 2.0
+
+---
+
+# 1. Purpose
+
+This document defines the Internal Fiscal Request model used inside PRACTICULARIUM Platform 2.0.
+
+The Internal Fiscal Request represents the contract between OMS and Fiscal Providers.
+
+It is independent from any external API implementation.
+
+---
+
+# 2. Objectives
+
+The Internal Fiscal Request shall:
+
+- isolate OMS from external Fiscal Providers;
+- provide a unified request model;
+- simplify Provider implementation;
+- support multiple Fiscal Providers;
+- remain stable even if external APIs change.
+
+---
+
+# 3. Design Principles
+
+The Internal Fiscal Request follows these principles:
+
+- Provider Independence
+- Internal Data Ownership
+- No Business Logic
+- No Calculations
+- Immutable After Build
+
+---
+
+# 4. General Structure
+
+```javascript
+FiscalRequest {
+
+    seller,
+
+    customer,
+
+    items,
+
+    payment,
+
+    totals,
+
+    metadata
+
+}
+```
+
+---
+
+# 5. Seller
+
+Contains seller information.
+
+Typical fields:
+
+- Seller Name
+- Tax Number
+- Business Unit
+- Business Address
+
+Source:
+
+Fiscal Configuration
+
+---
+
+# 6. Customer
+
+Contains customer information.
+
+Source:
+
+data.customer
+
+Typical fields:
+
+- First Name
+- Last Name
+- Email
+- Phone
+
+---
+
+# 7. Items
+
+Represents products included in the fiscal receipt.
+
+Each item contains:
+
+- Product Name
+- Quantity
+- Unit Price
+- Total Price
+
+Source:
+
+data.product
+
+---
+
+# 8. Payment
+
+Contains payment information.
+
+Source:
+
+data.payment
+
+Typical fields:
+
+- Payment Method
+- Payment Type
+- Paid Amount
+
+---
+
+# 9. Totals
+
+Contains financial totals.
+
+Source:
+
+data.pricing
+
+Typical fields:
+
+- Products Total
+- Delivery Total
+- Grand Total
+- Currency
+
+---
+
+# 10. Metadata
+
+Contains internal OMS information.
+
+Typical fields:
+
+- Order Number
+- Order Date
+- Internal Reference
+- Platform Version
+
+Metadata is never displayed on the fiscal receipt.
+
+---
+
+# 11. Provider Mapping
+
+Internal Fiscal Request is transformed by the selected Fiscal Provider into the external API format.
+
+OMS never communicates directly using Provider-specific structures.
+
+---
+
+# 12. Version History
+
+| Version | Description |
+|----------|-------------|
+| 1.0 | Initial Internal Fiscal Request Specification |
+
+---
+
+============================================================
+
+PRACTICULARIUM Platform 2.0
+
+Architecture Documentation
+
+Approved
+
+© Z.I.S. Publishing
+
+============================================================
+
+
+
+# PRACTICULARIUM Platform 2.0
+
+# Специфікація Fiscal Request v1.0
+
+---
+
+## Інформація про документ
+
+**Документ:** Специфікація Fiscal Request
+
+**Версія:** 1.0
+
+**Статус:** Затверджено
+
+**Модуль:** Fiscal Engine
+
+**Платформа:** PRACTICULARIUM Platform 2.0
+
+---
+
+# 1. Призначення
+
+Цей документ визначає внутрішню модель **Fiscal Request**, яка використовується в PRACTICULARIUM Platform 2.0.
+
+Internal Fiscal Request є внутрішнім контрактом між OMS та Фіскальними Провайдерами (ПРРО).
+
+Внутрішня модель не залежить від структури API жодного зовнішнього сервісу.
+
+---
+
+# 2. Мета
+
+Internal Fiscal Request створений для:
+
+- ізоляції OMS від зовнішніх API;
+- використання єдиної внутрішньої моделі даних;
+- спрощення реалізації нових Фіскальних Провайдерів;
+- підтримки декількох ПРРО;
+- забезпечення стабільності бізнес-логіки навіть при зміні API зовнішніх сервісів.
+
+---
+
+# 3. Принципи побудови
+
+Internal Fiscal Request базується на таких принципах:
+
+- незалежність від Провайдера;
+- єдина внутрішня модель даних;
+- відсутність бізнес-логіки;
+- відсутність обчислень;
+- незмінність після формування.
+
+---
+
+# 4. Загальна структура
+
+```javascript
+FiscalRequest {
+
+    seller,
+
+    customer,
+
+    items,
+
+    payment,
+
+    totals,
+
+    metadata
+
+}
+```
+
+---
+
+# 5. Seller
+
+Містить інформацію про продавця.
+
+Типові поля:
+
+- найменування ФОП;
+- податковий номер;
+- господарська одиниця;
+- адреса господарської одиниці.
+
+Джерело:
+
+```
+Fiscal Configuration
+```
+
+---
+
+# 6. Customer
+
+Містить інформацію про покупця.
+
+Джерело:
+
+```
+data.customer
+```
+
+Типові поля:
+
+- ім'я;
+- прізвище;
+- електронна пошта;
+- телефон.
+
+---
+
+# 7. Items
+
+Містить перелік товарів, що підлягають фіскалізації.
+
+Кожна позиція містить:
+
+- назву товару;
+- кількість;
+- ціну за одиницю;
+- загальну вартість позиції.
+
+Джерело:
+
+```
+data.product
+```
+
+---
+
+# 8. Payment
+
+Містить інформацію про оплату.
+
+Джерело:
+
+```
+data.payment
+```
+
+Типові поля:
+
+- спосіб оплати;
+- тип оплати;
+- сума оплати.
+
+---
+
+# 9. Totals
+
+Містить підсумкові фінансові дані.
+
+Джерело:
+
+```
+data.pricing
+```
+
+Типові поля:
+
+- вартість товарів;
+- вартість доставки;
+- загальна сума;
+- валюта.
+
+---
+
+# 10. Metadata
+
+Містить службову інформацію OMS.
+
+Типові поля:
+
+- номер замовлення;
+- дата замовлення;
+- внутрішній ідентифікатор;
+- версія платформи.
+
+Metadata не відображаються у фіскальному чеку.
+
+---
+
+# 11. Відображення у формат Провайдера
+
+Internal Fiscal Request перетворюється обраним Фіскальним Провайдером у формат його API.
+
+OMS ніколи не працює безпосередньо зі структурами конкретного ПРРО.
+
+---
+
+# 12. Історія версій
+
+| Версія | Опис |
+|---------|----------------------------------------------|
+| 1.0 | Початкова редакція Internal Fiscal Request Specification |
+
+---
+
+============================================================
+
+PRACTICULARIUM Platform 2.0
+
+Architecture Documentation
+
+Approved
+
+© Z.I.S. Publishing
+
+============================================================

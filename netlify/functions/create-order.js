@@ -1,24 +1,61 @@
 const { validateOrder } = require("../lib/order-validator");
-const { buildOrder } = require("../lib/order-builder");
 
-const { createCustomerMessage } = require("../lib/messages/customer-message");
-const { createOwnerMessage } = require("../lib/messages/owner-message");
+const { buildOrder } =
+    require("../lib/order-builder");
 
-const { sendEmail } = require("../lib/services/email-service");
-const { saveOrder } = require("../lib/order-repository");
+const {
+    createOwnerMessage
+} = require("../lib/messages/owner-message");
+
+const notification =
+    require("../lib/notification/notification");
+
+const {
+    NOTIFICATION_TYPES
+} = require("../lib/notification/notification-types");
+
+const {
+    sendEmail
+} = require("../lib/services/email-service");
+
+const {
+    saveOrder
+} = require("../lib/order-repository");
+
+const {
+    runFiscalWorkflow
+} = require("../lib/fiscal/fiscal-workflow");
 
 exports.handler = async (event) => {
 
     try {
 
-        const data = JSON.parse(event.body);
+        /**
+         * ----------------------------------------------------
+         * Parse Request
+         * ----------------------------------------------------
+         */
 
-        const order = buildOrder(data);
+        const data =
+            JSON.parse(event.body);
 
-       console.log("PRODUCT OBJECT:");
-       console.log(order.product);
+        /**
+         * ----------------------------------------------------
+         * Build Order
+         * ----------------------------------------------------
+         */
 
-        const validationResult = validateOrder(order);
+        const order =
+            buildOrder(data);
+
+        /**
+         * ----------------------------------------------------
+         * Validate Order
+         * ----------------------------------------------------
+         */
+
+        const validationResult =
+            validateOrder(order);
 
         if (!validationResult.valid) {
 
@@ -30,7 +67,8 @@ exports.handler = async (event) => {
 
                     success: false,
 
-                    errors: validationResult.errors
+                    errors:
+                        validationResult.errors
 
                 })
 
@@ -38,48 +76,129 @@ exports.handler = async (event) => {
 
         }
 
-        const customerMessage = createCustomerMessage(order);
+        /**
+         * ----------------------------------------------------
+         * Owner Message
+         * ----------------------------------------------------
+         */
 
-        const ownerMessage = createOwnerMessage(order);
+        const ownerMessage =
+            createOwnerMessage(order);
 
-        console.log("\n================================");
-        console.log("НОВЕ ЗАМОВЛЕННЯ");
-        console.log("================================");
+        console.log();
+
+        console.log(
+            "================================"
+        );
+
+        console.log(
+            "НОВЕ ЗАМОВЛЕННЯ"
+        );
+
+        console.log(
+            "================================"
+        );
 
         console.log(order);
 
-        console.log("Відправляємо лист клієнту...");
+        /**
+         * ----------------------------------------------------
+         * Customer Notification
+         * ----------------------------------------------------
+         */
+
+        console.log(
+            "Відправляємо повідомлення клієнту..."
+        );
+
+        await notification.send(
+
+            NOTIFICATION_TYPES.ORDER_CREATED,
+
+            {
+
+                order,
+
+                attachments: []
+
+            }
+
+        );
+
+        console.log(
+            "Повідомлення клієнту відправлено."
+        );
+
+        /**
+         * ----------------------------------------------------
+         * Owner Email
+         * ----------------------------------------------------
+         */
+
+        console.log(
+            "Відправляємо лист власнику..."
+        );
 
         await sendEmail({
 
-           to: order.customer.email,
+            to:
+                process.env.OWNER_EMAIL,
 
-           subject: "Ваше замовлення отримано",
+            subject:
+                "Нове замовлення",
 
-           message: customerMessage
-
-        });
-
-        console.log("Лист клієнту відправлено.");
-
-        console.log("Відправляємо лист власнику...");
-
-        await sendEmail({
-
-           to: process.env.OWNER_EMAIL,
-
-           subject: "Нове замовлення",
-
-           message: ownerMessage
+            message:
+                ownerMessage
 
         });
 
-        console.log("Лист власнику відправлено.");
-		console.log("Зберігаємо замовлення у Supabase...");
+        console.log(
+            "Лист власнику відправлено."
+        );
+
+        /**
+         * ----------------------------------------------------
+         * Save Order
+         * ----------------------------------------------------
+         */
+
+        console.log(
+            "Зберігаємо замовлення у Supabase..."
+        );
 
         await saveOrder(order);
 
-        console.log("Замовлення успішно збережено у Supabase.");
+        console.log(
+            "Замовлення успішно збережено у Supabase."
+        );
+
+        /**
+         * ----------------------------------------------------
+         * Fiscal Workflow
+         * ----------------------------------------------------
+         */
+
+        console.log(
+            "Запускаємо фіскалізацію..."
+        );
+
+        const fiscal =
+
+            await runFiscalWorkflow(
+
+                order
+
+            );
+
+        console.log(
+            "Фіскалізацію завершено."
+        );
+
+        /**
+         * ----------------------------------------------------
+         * Success Response
+         * ----------------------------------------------------
+         */
 
         return {
 
@@ -89,9 +208,12 @@ exports.handler = async (event) => {
 
                 success: true,
 
-                message: "Замовлення успішно отримано!",
+                message:
+                    "Замовлення успішно отримано!",
 
-                order
+                order,
+
+                fiscal
 
             })
 
@@ -102,7 +224,10 @@ exports.handler = async (event) => {
     catch (error) {
 
         console.error(error);
-		console.error(error.message);
+
+        console.error(
+            error.message
+        );
 
         return {
 
@@ -112,7 +237,8 @@ exports.handler = async (event) => {
 
                 success: false,
 
-                message: "Помилка отримання даних."
+                message:
+                    "Помилка отримання даних."
 
             })
 

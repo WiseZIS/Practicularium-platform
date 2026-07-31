@@ -379,6 +379,116 @@
 
         </section>
 
+<!-- ============================================ -->
+        <!-- SHIPPING -->
+        <!-- ============================================ -->
+
+        <section class="card">
+
+            <div class="card-header">
+
+                Логістика
+
+            </div>
+
+            <div class="card-body">
+
+                <div class="details-list">
+
+                    <div class="detail-row">
+
+                        <div class="detail-label">
+
+                            Номер ТТН
+
+                        </div>
+
+                        <div id="shipmentNumber"
+                             class="detail-value">
+
+                            —
+
+                        </div>
+
+                    </div>
+
+                    <div class="detail-row">
+
+                        <div class="detail-label">
+
+                            Перевізник
+
+                        </div>
+
+                        <div id="shipmentProvider"
+                             class="detail-value">
+
+                            —
+
+                        </div>
+
+                    </div>
+
+                    <div class="detail-row">
+
+                        <div class="detail-label">
+
+                            Вартість
+
+                        </div>
+
+                        <div id="shipmentCost"
+                             class="detail-value">
+
+                            —
+
+                        </div>
+
+                    </div>
+
+                    <div class="detail-row">
+
+                        <div class="detail-label">
+
+                            Очікувана доставка
+
+                        </div>
+
+                        <div id="shipmentDeliveryDate"
+                             class="detail-value">
+
+                            —
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="form-actions">
+
+                    <button
+                        id="createShipment"
+                        class="btn btn-primary">
+
+                        📦 Створити ТТН
+
+                    </button>
+
+                    <button
+                        id="trackShipment"
+                        class="btn btn-secondary">
+
+                        🔎 Відстежити ТТН
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
         <!-- ============================================ -->
         <!-- PAYMENT -->
         <!-- ============================================ -->
@@ -418,12 +528,161 @@
 
         </section>
 
-        <!-- ============================================ -->
-        <!-- PRICE -->
-        <!-- ============================================ -->
+<!-- ============================================ -->
+<!-- FISCAL OPERATIONS -->
+<!-- ============================================ -->
 
         <section class="card">
 
+    <div class="card-header">
+
+        Фіскальні операції
+
+    </div>
+
+    <div class="card-body">
+
+    <div class="details-list">
+
+        <div class="detail-row">
+
+            <div class="detail-label">
+
+                Статус
+
+            </div>
+
+            <div
+                id="fiscalStatus"
+                class="detail-value">
+
+                Чек ще не створений
+
+            </div>
+
+        </div>
+
+        <div class="detail-row">
+
+            <div class="detail-label">
+
+                Номер чека
+
+            </div>
+
+            <div
+                id="receiptNumber"
+                class="detail-value">
+
+                —
+
+            </div>
+
+        </div>
+
+        <div class="detail-row">
+
+            <div class="detail-label">
+
+                Фіскальний номер
+
+            </div>
+
+            <div
+                id="fiscalNumber"
+                class="detail-value">
+
+                —
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="form-actions">
+
+            <button
+                id="createReceipt"
+                class="btn btn-primary">
+
+                🧾 Створити чек
+
+            </button>
+
+            <button
+                id="openReceipt"
+                 class="btn btn-primary"
+                 style="display:none;">
+
+                📄 Відкрити PDF
+
+            </button>
+
+            <button
+                id="cancelReceipt"
+                class="btn btn-secondary"
+                disabled>
+
+                ❌ Скасувати чек
+
+            </button>
+
+        </div>
+
+        <div class="form-actions">
+
+            <button
+                id="fullReturn"
+                class="btn btn-secondary"
+                disabled>
+
+                ↩️ Повернення замовлення
+
+            </button>
+
+            <button
+                id="partialReturn"
+                class="btn btn-secondary"
+                disabled>
+
+                ↩️ Часткове повернення
+
+            </button>
+
+        </div>
+
+        <div class="form-actions">
+
+            <button
+                id="returnAct"
+                class="btn btn-secondary"
+                disabled>
+
+                📄 Сформувати акт повернення
+
+            </button>
+
+            <button
+                id="resendReceipt"
+                class="btn btn-secondary"
+                disabled>
+
+                ✉️ Повторно надіслати чек
+
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ============================================ -->
+<!-- PRICE -->
+<!-- ============================================ -->
+
+<section class="card">
             <div class="card-header">
 
                 Вартість

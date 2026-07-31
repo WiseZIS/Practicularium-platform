@@ -16,9 +16,35 @@ import {
     COUNTRY_LABELS
 } from "../shared/countries.js";
 
+import "../js/fiscal-ui.js";
+
 document.addEventListener("DOMContentLoaded", () => {
 
     loadOrder();
+
+    const createShipmentButton =
+        document.getElementById("createShipment");
+
+    if (createShipmentButton) {
+
+        createShipmentButton.addEventListener(
+            "click",
+            createShipment
+        );
+
+    }
+
+    const trackShipmentButton =
+        document.getElementById("trackShipment");
+
+    if (trackShipmentButton) {
+
+        trackShipmentButton.addEventListener(
+            "click",
+            trackShipment
+        );
+
+    }
 
     const statusSelect = document.getElementById("statusSelect");
 
@@ -27,17 +53,31 @@ document.addEventListener("DOMContentLoaded", () => {
         fillStatusSelect(statusSelect);
 
         const saveButton = document.getElementById("saveStatus");
+
         console.log(saveButton);
 
         if (saveButton) {
-        saveButton.addEventListener("click", saveStatus);
-}
+
+            saveButton.addEventListener(
+                "click",
+                saveStatus
+            );
+
+        }
 
     }
 
 });
 
 let currentOrder = null;
+
+document.addEventListener(
+
+    "createFiscalReceipt",
+
+    createFiscalReceipt
+
+);
 
 function fillStatusSelect(select) {
 
@@ -61,9 +101,11 @@ async function loadOrder() {
 
     try {
 
-        const params = new URLSearchParams(window.location.search);
+        const params =
+            new URLSearchParams(window.location.search);
 
-        const orderNumber = params.get("number");
+        const orderNumber =
+            params.get("number");
 
         if (!orderNumber) {
 
@@ -74,7 +116,9 @@ async function loadOrder() {
         }
 
         const response = await fetch(
+
             `/.netlify/functions/get-order?number=${orderNumber}`
+
         );
 
         const result = await response.json();
@@ -91,9 +135,7 @@ async function loadOrder() {
 
         renderOrder(currentOrder);
 
-    }
-
-    catch (error) {
+    } catch (error) {
 
         console.error(error);
 
@@ -112,6 +154,173 @@ async function loadOrder() {
 function renderOrder(order) {
 
     const data = order.data || {};
+    const fiscal = data.fiscal || {};
+	
+	console.log("FISCAL:", fiscal);
+    console.log("RECEIPT PATH:", fiscal.receiptPath);
+
+    const fiscalStatus =
+        document.getElementById("fiscalStatus");
+
+    const receiptNumber =
+        document.getElementById("receiptNumber");
+
+    const fiscalNumber =
+        document.getElementById("fiscalNumber");
+		
+	const createReceiptButton =
+        document.getElementById("createReceipt");
+		
+	const openReceiptButton =
+        document.getElementById("openReceipt");
+
+if (fiscal.receiptId) {
+
+    fiscalStatus.textContent =
+        "✅ Чек сформовано";
+
+    receiptNumber.textContent =
+        fiscal.receiptNumber || "—";
+
+    fiscalNumber.textContent =
+        fiscal.fiscalNumber || "—";
+		
+    if (createReceiptButton) {
+
+        createReceiptButton.style.display = "none";
+
+    }
+	
+	if (openReceiptButton) {
+
+        openReceiptButton.style.display = "";
+
+    }
+
+} else {
+
+    fiscalStatus.textContent =
+        "⚪ Чек ще не створений";
+
+    receiptNumber.textContent = "—";
+
+    fiscalNumber.textContent = "—";
+	
+	if (createReceiptButton) {
+
+        createReceiptButton.style.display = "";
+
+    }
+	
+	if (openReceiptButton) {
+
+        openReceiptButton.style.display = "none";
+
+    }
+
+}
+
+/**
+ * ------------------------------------------------------------
+ * Open Receipt
+ * ------------------------------------------------------------
+ */
+
+if (
+
+    openReceiptButton
+
+) {
+
+    openReceiptButton.onclick = () => {
+
+        if (
+
+            !order ||
+
+            !order.order_number
+
+        ) {
+
+            alert(
+
+                "Order number is missing."
+
+            );
+
+            return;
+
+        }
+
+        const url =
+
+            `/.netlify/functions/get-document?orderNumber=${encodeURIComponent(
+                order.order_number
+            )}&type=receipt`;
+
+        window.open(
+
+            url,
+
+            "_blank"
+
+        );
+
+    };
+
+}
+
+    console.log("ORDER DATA:", data);
+    console.log("DELIVERY:", data.delivery);
+    console.log("PRODUCT:", data.product);
+    console.log("FULL DATA:", data);
+
+    const shipment = data.shipping || {};
+
+    const SHIPMENT_PROVIDER_LABELS = {
+
+        nova_poshta: "Нова Пошта",
+
+        ukrposhta: "Укрпошта"
+
+    };
+
+    document.getElementById("shipmentProvider").textContent =
+        SHIPMENT_PROVIDER_LABELS[shipment.provider] ||
+        shipment.provider ||
+        "—";
+
+    const createShipmentButton =
+        document.getElementById("createShipment");
+
+    if (shipment.ttn && createShipmentButton) {
+
+        createShipmentButton.disabled = true;
+
+        createShipmentButton.textContent =
+            "✔ ТТН вже створена";
+
+    }
+	
+	const trackShipmentButton =
+        document.getElementById("trackShipment");
+
+    if (trackShipmentButton) {
+
+        trackShipmentButton.disabled = !shipment.ttn;
+
+    }
+
+    document.getElementById("shipmentNumber").textContent =
+        shipment.ttn || "ТТН ще не створена";
+
+    document.getElementById("shipmentCost").textContent =
+        shipment.cost
+            ? `${shipment.cost} грн`
+            : "—";
+
+    document.getElementById("shipmentDeliveryDate").textContent =
+        shipment.estimatedDeliveryDate || "—";
 
     updateStatus(order);
 
@@ -156,17 +365,17 @@ function renderOrder(order) {
 
     document.getElementById("deliveryCity").textContent =
         data.delivery?.city || "—";
-		
-		let deliveryAddress = "—";
+
+    let deliveryAddress = "—";
 
     switch (data.delivery?.method) {
 
         case "nova_poshta":
 
             deliveryAddress =
-                data.delivery?.branch
-                    ? `Відділення № ${data.delivery.branch}`
-                    : "—";
+                data.delivery?.warehouse ||
+                data.delivery?.branch ||
+                "—";
 
             break;
 
@@ -183,10 +392,8 @@ function renderOrder(order) {
                 data.delivery?.apartment
 
             ]
-
-            .filter(Boolean)
-
-            .join(", ");
+                .filter(Boolean)
+                .join(", ");
 
             break;
 
@@ -215,10 +422,8 @@ function renderOrder(order) {
                 data.delivery?.apartment
 
             ]
-
-            .filter(Boolean)
-
-            .join(", ");
+                .filter(Boolean)
+                .join(", ");
 
             break;
 
@@ -325,24 +530,35 @@ async function saveStatus() {
 
     }
 
-    const status = document.getElementById("statusSelect").value;
+    const status =
+        document.getElementById("statusSelect").value;
 
     try {
 
         const response = await fetch(
+
             "/.netlify/functions/update-order-status",
+
             {
+
                 method: "POST",
+
                 headers: {
+
                     "Content-Type": "application/json"
+
                 },
+
                 body: JSON.stringify({
 
                     orderNumber: currentOrder.order_number,
+
                     status
 
                 })
+
             }
+
         );
 
         const result = await response.json();
@@ -350,7 +566,10 @@ async function saveStatus() {
         if (!result.success) {
 
             throw new Error(
-                result.message || "Помилка збереження."
+
+                result.message ||
+                "Помилка збереження."
+
             );
 
         }
@@ -359,11 +578,13 @@ async function saveStatus() {
 
         if (result.updatedAt) {
 
-            currentOrder.updated_at = result.updatedAt;
+            currentOrder.updated_at =
+                result.updatedAt;
 
         } else {
 
-            currentOrder.updated_at = new Date().toISOString();
+            currentOrder.updated_at =
+                new Date().toISOString();
 
         }
 
@@ -374,9 +595,7 @@ async function saveStatus() {
 
         showMessage("Статус успішно збережено.");
 
-    }
-
-    catch (error) {
+    } catch (error) {
 
         console.error(error);
 
@@ -385,5 +604,139 @@ async function saveStatus() {
         );
 
     }
+
+}
+
+async function createShipment() {
+
+    if (!currentOrder) {
+
+        return;
+
+    }
+
+    try {
+
+        const response = await fetch(
+
+            "/.netlify/functions/create-shipment",
+
+            {
+
+                method: "POST",
+
+                headers: {
+
+                    "Content-Type": "application/json"
+
+                },
+
+                body: JSON.stringify({
+
+                    orderNumber: currentOrder.order_number
+
+                })
+
+            }
+
+        );
+
+        const result = await response.json();
+
+        console.log("SHIPMENT RESULT:");
+
+        console.log(result);
+
+        await loadOrder();
+
+        showMessage("ТТН успішно створена.");
+
+    } catch (error) {
+
+        console.error(error);
+
+        alert("Не вдалося створити ТТН.");
+
+    }
+
+}
+
+async function createFiscalReceipt() {
+
+    if (!currentOrder) {
+
+        return;
+
+    }
+
+    try {
+
+        const response = await fetch(
+
+            "/.netlify/functions/create-fiscal-receipt",
+
+            {
+
+                method: "POST",
+
+                headers: {
+
+                    "Content-Type": "application/json"
+
+                },
+
+                body: JSON.stringify({
+
+                    orderNumber: currentOrder.order_number
+
+                })
+
+            }
+
+        );
+
+        const result = await response.json();
+
+        console.log("FISCAL RESULT:");
+
+        console.log(result);
+
+        showMessage("Фіскальний чек успішно створено.");
+
+    } catch (error) {
+
+        console.error(error);
+
+        alert("Не вдалося створити фіскальний чек.");
+
+    }
+
+}
+
+function trackShipment() {
+
+    if (!currentOrder) {
+
+        return;
+
+    }
+
+    const shipment = currentOrder.data?.shipping;
+
+    if (!shipment?.ttn) {
+
+        alert("ТТН ще не створена.");
+
+        return;
+
+    }
+
+    window.open(
+
+        `https://tracking.novaposhta.ua/#/uk/document/${shipment.ttn}`,
+
+        "_blank"
+
+    );
 
 }

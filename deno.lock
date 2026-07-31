@@ -12,7 +12,10 @@
     "packageJson": {
       "dependencies": [
         "npm:@supabase/supabase-js@^2.110.0",
-        "npm:nodemailer@^9.0.1"
+        "npm:docxtemplater@^3.69.3",
+        "npm:dotenv@^17.4.2",
+        "npm:nodemailer@^9.0.1",
+        "npm:pizzip@^3.2.0"
       ]
     }
   }

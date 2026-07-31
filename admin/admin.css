@@ -875,3 +875,25 @@ body {
    END OF FILE
    OMS Design System v1.0
    ========================================================== */
+   
+   button:disabled {
+
+    background: #9ca3af;
+
+    border-color: #9ca3af;
+
+    color: #ffffff;
+
+    cursor: not-allowed;
+
+    opacity: 0.8;
+
+}
+
+button:disabled:hover {
+
+    background: #9ca3af;
+
+    border-color: #9ca3af;
+
+}
